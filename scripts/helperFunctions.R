@@ -26,16 +26,22 @@ getAppRank <- function(requestedId, store) {
   }
 }
 
-getAPIContent <- function(url, params, method) {
+getAPIContent <- function(url, params, method, page) {
+  # Combine params with access_token
   if (missing(params)) {
     params <- list(access_token = Sys.getenv("'42matterskey'"))
-  } else {
-    params <- list(c(access_token = Sys.getenv("'42matterskey'"), params))
+  } else if (typeof(params) == "list") {
+    params <- c(list(access_token = Sys.getenv("'42matterskey'")), params)
+  } else if (typeof(params) == "character") {
+    url <- paste0(url, "?access_token=", Sys.getenv("'42matterskey'"), "&page=", page)
   }
+  # Code for GET requests
   if (missing(method) || method == "GET") {
     response <- GET(url, query = params)
-  } else if (method == "POST") {
-    response <- POST(url, query = params)
+  } 
+  # Code for POST requests
+  else if (method == "POST") {
+    response <- POST(url, body = params, encode = "json")
   }
   result <- content(response, 'parsed')
   return(result)

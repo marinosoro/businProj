@@ -1,4 +1,7 @@
 library(dplyr)
+library(httr)
+library(jsonlite)
+library(lubridate)
 
 getAppCategories <- function(requestedId, store) {
   categories <- vector()
@@ -21,4 +24,19 @@ getAppRank <- function(requestedId, store) {
   } else {
     return(NA)
   }
+}
+
+getAPIContent <- function(url, params, method) {
+  if (missing(params)) {
+    params <- list(access_token = Sys.getenv("'42matterskey'"))
+  } else {
+    params <- list(c(access_token = Sys.getenv("'42matterskey'"), params))
+  }
+  if (missing(method) || method == "GET") {
+    response <- GET(url, query = params)
+  } else if (method == "POST") {
+    response <- POST(url, query = params)
+  }
+  result <- content(response, 'parsed')
+  return(result)
 }

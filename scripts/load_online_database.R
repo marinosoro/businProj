@@ -7,5 +7,6 @@ googlePlayStoreReview <- getDatabaseTable("googlePlayStoreReview")
 inAppPurchases <- getDatabaseTable("inAppPurchases")
 appleAppCategories <- getDatabaseTable("appleAppCategories")
 appleRanking <- getDatabaseTable("appleRanking")
+appleCategories <- getDatabaseTable("appleCategories")
 
 databaseLoaded <- TRUE

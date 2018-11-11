@@ -6,12 +6,8 @@
 # 
 #    http://shiny.rstudio.com/
 
-library(shiny)
-library(dplyr)
-library(ggplot2)
-library(stringr)
+source("./scripts/initProject.R")
 
-source("./scripts/databaseHelper.R")
 if (!exists("databaseLoaded") || !databaseLoaded) {
   source(file = "./scripts/load_online_database.R")
 }

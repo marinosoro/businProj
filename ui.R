@@ -19,10 +19,14 @@ shinyUI(fluidPage(
   sidebarLayout(
     
     sidebarPanel(
+      
       ## Content of the sidebar
+      selectInput("storekeuze", "Kies gewenste Store",
+                  choices = list("Google Play Store", 
+                                 "Apple App Store"))
     ),
     
-    #hallo
+    
 
     
     # Main panel for displaying outputs ----

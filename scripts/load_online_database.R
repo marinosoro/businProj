@@ -1,4 +1,4 @@
-source("./databaseHelper.R")
+source("./scripts/databaseHelper.R")
 
 appleStore <- getDatabaseTable("appleStore")
 appleStoreDescription <- getDatabaseTable("appleStoreDescription")

@@ -10,5 +10,6 @@ appleRanking <- getDatabaseTable("appleRanking")
 appleCategories <- getDatabaseTable("appleCategories")
 
 appleCategory_Weather <- getDatabaseTable("appleCategory_Weather")
+appleCategory_Games <- getDatabaseTable("appleCategory_Games")
 
 databaseLoaded <- TRUE

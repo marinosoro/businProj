@@ -20,8 +20,6 @@ shinyUI(fluidPage(
     
     sidebarPanel(
       ## Content of the sidebar
-      # Marino
-      #siebe
     ),
     
     

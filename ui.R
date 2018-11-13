@@ -23,7 +23,7 @@ shinyUI(fluidPage(
       # Marino
     ),
     
-    #Siebe is gay
+    #Stef
     
     # Main panel for displaying outputs ----
     mainPanel(

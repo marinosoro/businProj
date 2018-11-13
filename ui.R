@@ -21,6 +21,7 @@ shinyUI(fluidPage(
     sidebarPanel(
       ## Content of the sidebar
       # Mathias
+      # Mathias
     ),
     
     # Main panel for displaying outputs ----

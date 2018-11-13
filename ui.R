@@ -22,6 +22,8 @@ shinyUI(fluidPage(
       ## Content of the sidebar
     ),
     
+    #Siebe is gay
+    
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel

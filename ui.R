@@ -22,6 +22,7 @@ shinyUI(fluidPage(
       ## Content of the sidebar
     ),
     
+    #hallo
 
     
     # Main panel for displaying outputs ----

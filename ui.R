@@ -21,9 +21,10 @@ shinyUI(fluidPage(
     sidebarPanel(
       ## Content of the sidebar
       # Marino
+      #siebe
     ),
     
-    #Stef
+
     
     # Main panel for displaying outputs ----
     mainPanel(

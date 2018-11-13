@@ -10,5 +10,5 @@ library(shiny)
 library(ggplot2)
 library(stringr)
 
-source("./databaseHelper.R")
-source("./helperFunctions.R")
+source("./scripts/databaseHelper.R")
+source("./scripts/helperFunctions.R")

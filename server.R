@@ -36,8 +36,11 @@ shinyServer(function(input, output) {
   output$Test <- renderTable({
     ddply(appleStore, .(prime_genre), summarize, user_rating=mean(user_rating), price=mean(price), rating_count_tot=mean(rating_count_tot))
   filter(Test, prime_genre == input$category)
+  
+  
 })
 })
+
 
 
 

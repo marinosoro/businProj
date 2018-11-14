@@ -14,3 +14,5 @@ library(plotly)
 
 source("./scripts/databaseHelper.R")
 source("./scripts/helperFunctions.R")
+source("./scripts/load_online_database.R")
+source("./scripts/scrapeInAppPurchasesBool.R")

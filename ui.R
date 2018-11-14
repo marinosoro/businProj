@@ -33,7 +33,8 @@ shinyUI(fluidPage(
       ## Content of the main panel
       h1(textOutput("helloWorld")),
       plotlyOutput("g"),
-      tableOutput("Test")
+      tableOutput("Test"),
+      textOutput("populair")
       
 
     )

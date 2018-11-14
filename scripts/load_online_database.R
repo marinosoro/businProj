@@ -1,19 +1,36 @@
-<<<<<<< HEAD
-source("./scripts/databaseHelper.R")
-=======
-#source("./databaseHelper.R")
->>>>>>> 67154fe1265916a1cabf2cb235391ec98feb08b3
-
 appleStore <- getDatabaseTable("appleStore")
 appleStoreDescription <- getDatabaseTable("appleStoreDescription")
 googlePlayStore <- getDatabaseTable("googlePlayStore")
 googlePlayStoreReview <- getDatabaseTable("googlePlayStoreReview")
-inAppPurchases <- getDatabaseTable("inAppPurchases")
 appleAppCategories <- getDatabaseTable("appleAppCategories")
 appleRanking <- getDatabaseTable("appleRanking")
 appleCategories <- getDatabaseTable("appleCategories")
 
-appleCategory_Weather <- getDatabaseTable("appleCategory_Weather")
+
+appleCategory_Book <- getDatabaseTable("appleCategory_Book")
+appleCategory_Business <- getDatabaseTable("appleCategory_Business")
+appleCategory_Catalogs <- getDatabaseTable("appleCategory_Catalogs")
+appleCategory_Education <- getDatabaseTable("appleCategory_Education")
+appleCategory_Entertainment <- getDatabaseTable("appleCategory_Entertainment")
+appleCategory_Finance <- getDatabaseTable("appleCategory_Finance")
+appleCategory_Food_Drink <- getDatabaseTable("appleCategory_Food_Drink")
 appleCategory_Games <- getDatabaseTable("appleCategory_Games")
+appleCategory_Health_Fitness <- getDatabaseTable("appleCategory_Health_Fitness")
+appleCategory_Lifestyle <- getDatabaseTable("appleCategory_Lifestyle")
+appleCategory_Magazines_Newspapers <- getDatabaseTable("appleCategory_Magazines_Newspapers")
+appleCategory_Medical <- getDatabaseTable("appleCategory_Medical")
+appleCategory_Music <- getDatabaseTable("appleCategory_Music")
+appleCategory_Navigation <- getDatabaseTable("appleCategory_Navigation")
+appleCategory_News <- getDatabaseTable("appleCategory_News")
+appleCategory_Photo_Video <- getDatabaseTable("appleCategory_Photo_Video")
+appleCategory_Productivity <- getDatabaseTable("appleCategory_Productivity")
+appleCategory_Reference <- getDatabaseTable("appleCategory_Reference")
+appleCategory_Social_Networking <- getDatabaseTable("appleCategory_Social_Networking")
+appleCategory_Sports <- getDatabaseTable("appleCategory_Sports")
+appleCategory_Travel <- getDatabaseTable("appleCategory_Travel")
+appleCategory_Utilities <- getDatabaseTable("appleCategory_Utilities")
+appleCategory_Weather  <- getDatabaseTable("appleCategory_Weather")
+appleCategory_Shopping <- getDatabaseTable("appleCategory_Shopping")
+appleCategory_Stickers <- getDatabaseTable("appleCategory_Stickers")
 
 databaseLoaded <- TRUE

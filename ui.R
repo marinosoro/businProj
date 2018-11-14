@@ -21,18 +21,18 @@ shinyUI(fluidPage(
     sidebarPanel(
       
       ## Content of the sidebar
-      selectInput("storekeuze", "Kies gewenste Store",
-                  choices = list("Google Play Store", 
-                                 "Apple App Store"))
-    ),
-    
+      selectInput("category", "Kies gewenste categorie",
+                  choices = appleStore$prime_genre
+      )),
     
 
     
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
-      h1(textOutput("helloWorld"))
+      h1(textOutput("helloWorld")),
+      plotlyOutput("g"),
+      tableOutput("Test")
       
     )
   )

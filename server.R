@@ -16,7 +16,17 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 shinyServer(function(input, output) {
   
   output$helloWorld <- renderText({
-    "Hello World"
+    "Dashboard"
   })
   
+  output$g <- renderPlotly({
+    appleStore %>% group_by(prime_genre) %>% ggplot(aes(x=prime_genre)) + xlab("Categorieën") + ylab("Aantal") + geom_bar() + coord_flip()
+    ggplotly(g)
+  })
+  
+  output$Test <- renderTable({
+    ddply(appleStore, .(prime_genre), summarize, user_rating=mean(user_rating), price=mean(price), rating_count_tot=mean(rating_count_tot))
+  filter(Test, prime_genre == input$category)
 })
+})
+

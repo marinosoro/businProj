@@ -26,9 +26,10 @@ shinyUI(fluidPage(
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
-      h1(textOutput("helloWorld"))
-      
-    )
+      plotlyOutput("plot"),
+      textInput("text", h3("Text input"), value = "Enter text..."))  
   )
-  
-))
+)
+)
+
+

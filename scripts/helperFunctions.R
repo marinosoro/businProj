@@ -46,3 +46,10 @@ getAPIContent <- function(url, params, method, page) {
   result <- content(response, 'parsed')
   return(result)
 }
+
+# Closes all mysql connections
+dbDisconnectAll <- function(){
+  ile <- length(dbListConnections(MySQL())  )
+  lapply( dbListConnections(MySQL()), function(x) dbDisconnect(x) )
+  cat(sprintf("%s connection(s) closed.\n", ile))
+}

@@ -19,13 +19,13 @@ getDatabaseTable <- function(table) {
 
 createTable <- function(name, dataframe) {
   db <- getDB()
-  dbWriteTable(db, name, dataframe, overwrite = TRUE)
+  dbWriteTable(db, name, dataframe, overwrite = TRUE, row.names = FALSE)
   dbDisconnect(db)
 }
 
 addToTable <- function(table, dataframe) {
   db <- getDB()
-  dbWriteTable(db, table, dataframe, append = TRUE)
+  dbWriteTable(db, table, dataframe, append = TRUE, row.names = FALSE)
   dbDisconnect(db)
 }
 

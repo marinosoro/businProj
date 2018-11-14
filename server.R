@@ -15,6 +15,7 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
+
   output$helloWorld <- renderText({
 
     "Hello World"
@@ -31,6 +32,12 @@ shinyServer(function(input, output) {
   output$g <- renderPlotly({
     appleStore %>% group_by(prime_genre) %>% ggplot(aes(x=prime_genre)) + xlab("Categorieën") + ylab("Aantal") + geom_bar() + coord_flip()
     ggplotly(g)
+  })
+
+  output$plot <- renderPlotly({
+    ggplotly(ggplot(data=GenreRating, aes(x=prime_genre, y=user_rating)) +
+    geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
+    
   })
   
   output$Test <- renderTable({

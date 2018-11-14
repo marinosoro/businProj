@@ -9,6 +9,7 @@ library(progress)
 library(shiny)
 library(ggplot2)
 library(stringr)
+library(plotly)
 
 source("./scripts/databaseHelper.R")
 source("./scripts/helperFunctions.R")

@@ -17,12 +17,11 @@ shinyServer(function(input, output) {
   
   output$helloWorld <- renderText({
     "Hello World"
+  })
   
-  output$Category <- renderPlot({
+  output$Category_output <- renderPlotly({
     googlePlayStore %>% group_by(Category) %>% ggplot(aes(Category)) + geom_bar() + coord_flip() -> g
-    ggplotly(g)
+    ggplotly(g) 
   })  
-    
-    })
   
 })

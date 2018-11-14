@@ -22,17 +22,21 @@ shinyUI(fluidPage(
       ## Content of the sidebar
 
    selectInput("Category", 'Kies een gewenste categorie',
-               choices = googlePlayStore$Category)
-    ),
+               choices = googlePlayStore$Category),
+   
+   textInput("WhatApp", "Typ de gewenste app", "Tower Defence"),
+   
+   radioButtons("GoogleApple", "Selecteer Google Play store of Apple store", 
+                c("Google Play store" = "googlePlayStore", "Apple store" = "appleStore"))
+   
     
-    #hallo
-
-    
+  ),
+   
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
       h1(textOutput("helloWorld")),
-      plotOutput(outputId = "Category")
+      plotlyOutput("Category_output")
     )
   )
   

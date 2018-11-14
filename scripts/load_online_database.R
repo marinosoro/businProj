@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+source("./scripts/databaseHelper.R")
+=======
 #source("./databaseHelper.R")
+>>>>>>> 67154fe1265916a1cabf2cb235391ec98feb08b3
 
 appleStore <- getDatabaseTable("appleStore")
 appleStoreDescription <- getDatabaseTable("appleStoreDescription")

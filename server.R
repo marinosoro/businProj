@@ -16,8 +16,17 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 shinyServer(function(input, output) {
   
   output$helloWorld <- renderText({
-    "Dashboard"
-  })
+
+    "Hello World"
+    })
+
+   
+  
+  output$Category <- renderPlot({
+    googlePlayStore %>% group_by(Category) %>% ggplot(aes(Category)) + geom_bar() + coord_flip() -> g
+    ggplotly(g)
+  })  
+    
   
   output$g <- renderPlotly({
     appleStore %>% group_by(prime_genre) %>% ggplot(aes(x=prime_genre)) + xlab("Categorieën") + ylab("Aantal") + geom_bar() + coord_flip()
@@ -29,4 +38,7 @@ shinyServer(function(input, output) {
   filter(Test, prime_genre == input$category)
 })
 })
+
+
+
 

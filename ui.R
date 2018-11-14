@@ -21,10 +21,11 @@ shinyUI(fluidPage(
     sidebarPanel(
       
       ## Content of the sidebar
+
       selectInput("category", "Kies gewenste categorie",
                   choices = appleStore$prime_genre
       )),
-    
+
 
     
     # Main panel for displaying outputs ----
@@ -34,6 +35,7 @@ shinyUI(fluidPage(
       plotlyOutput("g"),
       tableOutput("Test")
       
+
     )
   )
   

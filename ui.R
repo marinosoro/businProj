@@ -20,16 +20,26 @@ shinyUI(fluidPage(
     
     sidebarPanel(
       ## Content of the sidebar
+
+   selectInput("Category", 'Kies een gewenste categorie',
+               choices = googlePlayStore$Category)
     ),
     
+    #hallo
+
     
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
+
       plotlyOutput("plot"),
-      textInput("text", h3("Text input"), value = "Enter text..."))  
+      textInput("text", h3("Text input"), value = "Enter text...")),  
+
+      h1(textOutput("helloWorld")),
+      plotOutput(outputId = "Category")
+    )
   )
 )
-)
+
 
 

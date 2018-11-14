@@ -20,5 +20,14 @@ shinyServer(function(input, output) {
     geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
     
   })
+
+  output$helloWorld <- renderText({
+    "Hello World"
   
+  output$Category <- renderPlot({
+    googlePlayStore %>% group_by(Category) %>% ggplot(aes(Category)) + geom_bar() + coord_flip() -> g
+    ggplotly(g)
+  })  
+    
+    })
 })

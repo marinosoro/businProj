@@ -25,15 +25,13 @@ shinyUI(fluidPage(
                choices = googlePlayStore$Category)
     ),
     
-    #hallo
-
-    
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
-      h1(textOutput("helloWorld")),
-      plotOutput(outputId = "Category")
-    )
+      plotlyOutput("plot"),
+      textInput("text", h3("Text input"), value = "Enter text..."))  
   )
-  
-))
+)
+)
+
+

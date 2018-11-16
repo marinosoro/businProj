@@ -1,10 +1,9 @@
 library(plotly)
-library(plyr)
 library(dplyr)
 
 ## lijst maken met gemiddelde rating per categorie en daarbij gewichten toekennen aan de hand van het aantal reviews.=======================
-countGenre <- count(appleStore$prime_genre)
-countGenre$x = as.character(countGenre$x)
+countGenre <- appleStore %>% group_by(prime_genre) %>% summarise(freq = n())
+countGenre$prime_genre = as.character(countGenre$prime_genre)
 
 ##random varaibelen nodig voor de loops :p erik doe rustig worden op het einde fijn terug verwijdert :*
 i = 1
@@ -23,7 +22,7 @@ perc3 = 0.8
 perc4 = 1.0
 
 for(i in 1:23){
-  y <- filter(appleStore, prime_genre == countGenre$x[i])
+  y <- filter(appleStore, prime_genre == countGenre$prime_genre[i])
   for(n in 1:countGenre$freq[i]){
     if (appleStore$rating_count_tot[i] < 100){
       z = z + perc1*y$user_rating[n]
@@ -46,7 +45,7 @@ for(i in 1:23){
     value4 = value4 + 1
   }
   z = z/(countGenre$freq[i] - value1 - value2 - value3 - value4 + (perc1*value1 + perc2*value2 + perc3*value3 + perc4*value4))
-  avg_rating_with_weight[nrow(avg_rating_with_weight) + 1,] = list(countGenre$x[i], z)
+  avg_rating_with_weight[nrow(avg_rating_with_weight) + 1,] = list(countGenre$prime_genre[i], z)
   i = i + 1
   n = 1
   z = 0.0

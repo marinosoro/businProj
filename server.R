@@ -14,9 +14,11 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  
-  output$helloWorld <- renderText({
-    "Hello World"
+
+  output$plot <- renderPlotly({
+    ggplotly(ggplot(data=GenreRating, aes(x=prime_genre, y=user_rating)) +
+    geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
+    
   })
-  
+
 })

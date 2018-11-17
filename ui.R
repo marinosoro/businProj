@@ -24,22 +24,33 @@ shinyUI(fluidPage(
 
       selectInput("category", "Kies gewenste categorie",
                   choices = appleStore$prime_genre
-      )),
+      ),
 
+
+
+   selectInput("Category", 'Kies een gewenste categorie',
+               choices = googlePlayStore$Category)
+    )),
 
     
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
 
+
       h1(textOutput("helloWorld")),
       plotlyOutput("g"),
       tableOutput("Test"),
       plotlyOutput("plot"),
-      textInput("text", h3("Text input"), value = "Enter text..."))  
+      textInput("text", h3("Text input"), value = "Enter text..."),  
 
-  )
-)
-)
+
+      plotlyOutput("plot"),
+      textInput("text", h3("Text input"), value = "Enter text...")
+      
+    )
+
+
+
 
 

@@ -34,11 +34,13 @@ shinyServer(function(input, output) {
     ggplotly(g)
   })
 
+
   output$plot <- renderPlotly({
     ggplotly(ggplot(data=GenreRating, aes(x=prime_genre, y=user_rating)) +
     geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
     
   })
+
   
   output$Test <- renderTable({
     ddply(appleStore, .(prime_genre), summarize, user_rating=mean(user_rating), price=mean(price), rating_count_tot=mean(rating_count_tot))

@@ -14,7 +14,6 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-<<<<<<< HEAD
   
   output$helloWorld <- renderText({
     "Hello World"
@@ -25,7 +24,6 @@ shinyServer(function(input, output) {
     ggplotly(g) 
   })  
   
-=======
 
   output$plot <- renderPlotly({
     ggplotly(ggplot(data=GenreRating, aes(x=prime_genre, y=user_rating)) +
@@ -33,5 +31,4 @@ shinyServer(function(input, output) {
     
   })
 
->>>>>>> 595c8d75d91c9f62bf38feb995bb74de6ce9647b
 })

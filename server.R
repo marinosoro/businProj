@@ -35,6 +35,7 @@ shinyServer(function(input, output) {
     allCategoryData %>% filter(trackCensoredName == input$WhatApp) -> appSearched
     appSearched %>% select(price, averageUserRating, userRatingCount, revenueId, primaryGenreId) -> dataAppSearched
     appleCategories %>% filter(id == dataAppSearched$primaryGenreId) %>% select(name) -> dataAppSearched$primaryGenreId
+    revenueModels %>% filter(model == dataAppSearched$revenueId) %>% select(description) -> dataAppSearch$revenueId
     colnames(dataAppSearched) <- c("Price", "Rating", "Rating count", "Revenue model", "Genre")
     dataAppSearched
     

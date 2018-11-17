@@ -33,12 +33,8 @@ shinyServer(function(input, output) {
   
   output$summaryApp <- renderTable({
     allCategoryData %>% filter(trackCensoredName == input$WhatApp) -> appSearched
-    appSearched %>% select(price) -> priceApp
-    appSearched %>% select(averageUserRating) -> ratingApp
-    appSearched %>% select(userRatingCount) -> ratingCountApp
-    appSearched %>% select(revenueId) -> modelApp
-    appSearched %>% select(primaryGenreId) -> genreApp
     appSearched %>% select(price, averageUserRating, userRatingCount, revenueId, primaryGenreId) -> dataAppSearched
+    appleCategories %>% filter(id == dataAppSearched$primaryGenreId) %>% select(name) -> dataAppSearched$primaryGenreId
     colnames(dataAppSearched) <- c("Price", "Rating", "Rating count", "Revenue model", "Genre")
     dataAppSearched
     

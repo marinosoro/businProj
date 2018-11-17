@@ -9,5 +9,6 @@ library(ggplot2)
 library(plotly)
 library(stringr)
 
-source("./scripts/databaseHelper.R")
-source("./scripts/helperFunctions.R")
+source("scripts/databaseHelper.R")
+source("scripts/helperFunctions.R")
+source("scripts/revenueModelPieCharts.R")

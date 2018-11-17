@@ -10,28 +10,13 @@
 library(shiny)
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
+htmlTemplate("template.html",
+  categoryDropdown = selectInput("Category", 'Kies een gewenste categorie',
+                         choices = appleCategories$name, selected = "Games"),
   
-  # Application title
-  titlePanel("Our Dashboard"),
-  
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
-    
-    sidebarPanel(
-      ## Content of the sidebar
-
-   selectInput("Category", 'Kies een gewenste categorie',
-               choices = googlePlayStore$Category)
-    ),
-    
-    # Main panel for displaying outputs ----
-    mainPanel(
-      ## Content of the main panel
-      plotlyOutput("plot"),
-      textInput("text", h3("Text input"), value = "Enter text..."))  
-  )
+  revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),
+  revenueModelPopularityPlot = plotlyOutput("revenueModelPopularityPlot"),
+  revenueModelComparisonPlots = plotlyOutput("revenueModelComparisonPlots"),
+  weightedRatingPlot = plotlyOutput("weightedRatingPlot")
 )
-)
-
 

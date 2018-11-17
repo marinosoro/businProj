@@ -30,5 +30,9 @@ shinyServer(function(input, output) {
     geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
     
   })
+  
+  output$summaryApp <- renderTable({
+    
+  })
 
 })

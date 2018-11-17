@@ -21,25 +21,24 @@ shinyUI(fluidPage(
     sidebarPanel(
       ## Content of the sidebar
 
-   selectInput("Category", 'Kies een gewenste categorie',
-               choices = googlePlayStore$Category)
-    ),
+    sliderInput("num1", h5("gewicht ratings met 0 tot 100 reviews (%)"),
+                min = 1, max = 100, value = 10),
+    sliderInput("num2", h5("gewicht ratings met 101 tot 1000 reviews (%)"),
+                min = 1, max = 100, value = 40),
+    sliderInput("num3", h5("gewicht ratings met 1.001 tot 10.000 reviews (%)"),
+                min = 1, max = 100, value = 80),
+    sliderInput("num4", h5("gewicht ratings met meer dan 10.000 reviews (%)"),
+                min = 1, max = 100, value = 100)
     
-    #hallo
-
+    ),
     
     # Main panel for displaying outputs ----
     mainPanel(
       ## Content of the main panel
-
-      plotlyOutput("plot"),
-      textInput("text", h3("Text input"), value = "Enter text...")),  
-
-      h1(textOutput("helloWorld")),
-      plotOutput(outputId = "Category")
+      plotlyOutput("plot")
     )
   )
-)
+))
 
 
 

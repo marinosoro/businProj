@@ -1,8 +1,13 @@
 
-weightedMean <- function(p1 = integer(),p2 = integer(),p3 = integer(),p4 = integer()){
-
+getWeightedRatingPlot <- function(w1,w2,W3,w4) {
+  appleStore <- get("appleStore")
   ## lijst maken met gemiddelde rating per categorie en daarbij gewichten toekennen aan de hand van het aantal reviews.=======================
-  countGenre <- count(appleStore, prime_genre)
+  countGenre <- appleStore %>% group_by(prime_genre) %>% summarise(freq = n())
+  countGenre$prime_genre = as.character(countGenre$prime_genre)
+  
+  if (missing(w1) || missing(w2) || missing(w3) || missing(w4)) {
+    stop("no inputs given.")
+  }
   
   ##random varaibelen nodig voor de loops :p erik doe rustig worden op het einde fijn terug verwijdert :*
   i = 1
@@ -63,7 +68,5 @@ weightedMean <- function(p1 = integer(),p2 = integer(),p3 = integer(),p4 = integ
   ggplotly(p)
   
   ##einde ==============================================================================================================================
-  
-  
 }
 

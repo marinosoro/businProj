@@ -53,3 +53,38 @@ dbDisconnectAll <- function(){
   lapply( dbListConnections(MySQL()), function(x) dbDisconnect(x) )
   cat(sprintf("%s connection(s) closed.\n", ile))
 }
+
+getCategoryBestPrice <- function(categoryName) {
+  ## meanRatingGenreRevenue filteren op Games
+  y <- filter(meanRatingGenreRevenue, category == categoryName)
+  z <- max(y$meanRating)
+  y1 <- filter(y, meanRating == z)
+  Id <- y1$revenueId
+  result <- 0
+  
+  if (Id %in% c(4,2)){
+    restult <- 0
+  }
+  
+  else {
+    categoryNameSlug <- str_replace(categoryName, pattern = ' ', replacement = '_')
+    categoryNameSlug <- str_replace(categoryNameSlug, pattern = '& ', replacement = '')
+    
+    categoryDFName <- paste0("appleCategory_", categoryNameSlug)
+    categoryDF <- get(categoryDFName, envir = .GlobalEnv)
+    filteredCategoryDF <- filter(categoryDF, revenueId == Id)
+    som <- 0
+    som2 <- 0
+    allApps <- split(filteredCategoryDF, seq_len(nrow(filteredCategoryDF)))
+    
+    for (rank in 1:nrow(filteredCategoryDF)) {
+      app <- allApps[[rank]]
+      inverseRank <- nrow(filteredCategoryDF) - rank + 1
+      som <- som + (inverseRank*app$price)
+      som2 <- som2 + inverseRank
+    }
+    result <- som / som2
+  }
+  return(round(result, digits = 2))
+}
+

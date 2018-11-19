@@ -1,0 +1,101 @@
+@font-face {
+    font-family: Hunters;
+    src: url("Hunters.otf") format("opentype");
+}
+
+.container, #sidebar {
+    min-height: 100vh;
+}
+#content_top {
+    padding-top: 0;
+    padding-right: 35px;
+    height: 80px;
+    margin-right: 0 !important;
+    position: relative;
+}
+#content_top::after {
+    content: '';
+    width: 90%;
+    position: absolute;
+    left: 5%;
+    bottom: -22px;
+    height: 1px;
+    background-color: white;
+}
+#content_top h1 {
+    font-size: 5em;
+    /* font-weight: bold; */
+    font-family: 'Hunters';
+    color: #D8C0BF;
+    /* text-transform: uppercase; */
+    text-align: right !important;
+    width: 100%;
+    position: relative;
+    line-height: 80px;
+    vertical-align: middle;
+}
+#content_top h1 .slogan {
+    font-size: 10px;
+    color: rgba(216,192,191,.5);
+    font-family: 'Arial';
+    text-align: right !important;
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+}
+#sidebar {
+    background-color: #F9E9E5;
+    padding: 0 !important;
+    max-width: 50px !important;
+}
+#sidebar_top {
+    background-color: #D8C0BF;
+}
+.sidebar_item, #sidebar_top {
+    width: 100%;
+    padding-top: 100%;
+    border-bottom: 1px solid white;
+    position: relative;
+}
+.sidebar_item:first-child {
+    margin-top: 80px;
+    border-top: 1px solid white;
+}
+.sidebar_item i, #sidebar_top i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    font-size: 20px;
+    transform: translate(-50%, -50%);
+}
+#sidebar_top i {
+    font-size: 25px;
+    color: black;
+}
+.sidebar_item i.active {
+    color: #D8C0BF;
+}
+#sidebar_title {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Didot";
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#sidebar_item {
+    font-size: 15px;
+    font-family: "Arial";
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#content {
+    background-color: #FDF7F6;
+    width: calc(100vw - 50px) !important;
+    padding-right: 0;
+}
+#content_body {
+    margin-top: 50px;
+}

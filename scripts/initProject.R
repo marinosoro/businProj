@@ -12,5 +12,6 @@ library(plotly)
 library(stringr)
 library(plotly)
 
-source("./scripts/databaseHelper.R")
-source("./scripts/helperFunctions.R")
+source("scripts/databaseHelper.R")
+source("scripts/helperFunctions.R")
+source("scripts/revenueModelPieCharts.R")

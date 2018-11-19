@@ -45,11 +45,11 @@ shinyUI(fluidPage(
     mainPanel(
       ## Content of the main panel
 
+      tableOutput("summaryApp"),
       h1(textOutput("helloWorld")),
       plotlyOutput("Category_output"),
       plotlyOutput("plot"),
-      textInput("text", h3("Text input"), value = "Enter text..."),
-      tableOutput("summaryApp")
+      textInput("text", h3("Text input"), value = "Enter text...")
       )
 )))
 

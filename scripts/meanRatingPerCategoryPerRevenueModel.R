@@ -8,7 +8,7 @@ allCategoryData <- rbind(appleCategory_Book, appleCategory_Business, appleCatego
                           appleCategory_Entertainment, appleCategory_Finance, appleCategory_Food_Drink, appleCategory_Games,
                           appleCategory_Health_Fitness, appleCategory_Lifestyle, appleCategory_Magazines_Newspapers,
                           appleCategory_Medical, appleCategory_Music, appleCategory_Navigation, appleCategory_News, 
-                          appleCategory_Photo_Video, appleCategory_Productivity, appleCategory_Reference, appleCategory_Shopping,
+                          appleCategory_Photo_Video, appleCategory_cProductivity, appleCategory_Reference, appleCategory_Shopping,
                           appleCategory_Social_Networking, appleCategory_Sports, appleCategory_Stickers, appleCategory_Travel,
                           appleCategory_Utilities, appleCategory_Weather)
 

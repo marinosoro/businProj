@@ -55,3 +55,13 @@ for(i in 1:24){
 }
 
 remove(i, j, k, z, y, y1)
+
+## choices maken voor in selectinput in shiny
+
+CategoryChoices <- appleCategories
+CategoryChoices$row_names <- NULL
+CategoryChoices$id <- NULL
+
+
+
+

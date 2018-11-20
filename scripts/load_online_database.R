@@ -32,5 +32,6 @@ appleCategory_Weather  <- getDatabaseTable("appleCategory_Weather")
 appleCategory_Shopping <- getDatabaseTable("appleCategory_Shopping")
 appleCategory_Stickers <- getDatabaseTable("appleCategory_Stickers")
 allCategoryData <- getDatabaseTable("AllCategoryData")
+revenueModels <- getDatabaseTable("revenueModels")
 
 databaseLoaded <- TRUE

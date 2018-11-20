@@ -12,9 +12,10 @@ library(shiny)
 # Define UI for application that draws a histogram
 htmlTemplate("template.html",
   categoryDropdown = selectInput("Category", 'Kies een gewenste categorie',
-                         choices = appleCategories$name, selected = "Games"),
-  appTextbox = textInput("whichApp", 'Kies een gewenste app',
-                         "Tower Defence"),
+                         choices = appleCategories$name, selected = appSearched$primaryGenreId),
+  appTextbox = selectizeInput("whichApp", 'Kies een gewenste app',
+                         choices = allCategoryData$trackCensoredName, selected = NULL, multiple = FALSE,
+                         options = NULL),
   
 
   revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),

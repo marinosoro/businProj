@@ -13,10 +13,12 @@ library(shiny)
 htmlTemplate("template.html",
   categoryDropdown = selectInput("Category", 'Kies een gewenste categorie',
                          choices = appleCategories$name, selected = "Games"),
-  
+
   revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),
   revenueModelPopularityPlot = plotlyOutput("revenueModelPopularityPlot"),
   revenueModelComparisonPlots = plotlyOutput("revenueModelComparisonPlots"),
   weightedRatingPlot = plotlyOutput("weightedRatingPlot")
 )
+
+
 

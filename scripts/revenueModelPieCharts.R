@@ -36,7 +36,7 @@ revenueModelComparisonPlots <- function(categoryName) {
   data <- data.frame(index = indexes, 
                      count = c(count1, count2, count3, count4),
                      percentage = percentages, 
-                     revenueModel = c('Model 1','Model 2','Model 3','Model 4'),
+                     revenueModel = c('Paid','Free','Paid, iAP','Free, iAP'),
                      colorlabel = c('m1', 'm2', 'm3', 'm4'))
   
   plot_ly() %>% 
@@ -48,7 +48,8 @@ revenueModelComparisonPlots <- function(categoryName) {
       textposition = 'inside', 
       textinfo = 'label+percent',
       insidetextfont = list(color = '#FFFFFF'),
-      marker = list(line = list(color = '#FFFFFF', width = 3)),
+      marker = list(line = list(color = '#FFFFFF', width = 3),
+                    colors = c("#3c6372", "#E16768", "#d62f30", "#144b7f")),
       domain = list(x = c(0, 0.5), y = c(0, 1))) %>%
     
     add_pie(
@@ -67,5 +68,5 @@ revenueModelComparisonPlots <- function(categoryName) {
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            plot_bgcolor='transparent',
            paper_bgcolor='transparent',
-           showlegend = F)
+           showlegend = T)
 }

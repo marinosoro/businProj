@@ -26,8 +26,8 @@
     font-size: 5em;
     /* font-weight: bold; */
     font-family: 'Hunters';
-    color: #D8C0BF;
-    /* text-transform: uppercase; */
+    /* color: #D8C0BF; */
+    color: #20364B;
     text-align: right !important;
     width: 100%;
     position: relative;
@@ -36,7 +36,8 @@
 }
 #content_top h1 .slogan {
     font-size: 10px;
-    color: rgba(216,192,191,.5);
+    /* color: rgba(216,192,191,.5); */
+    color: #D33E43; /* #D33E43 */
     font-family: 'Arial';
     text-align: right !important;
     position: absolute;
@@ -44,37 +45,56 @@
     right: 0;
 }
 #sidebar {
-    background-color: #F9E9E5;
+    /* background-color: #F9E9E5; */
+    background-color: #20364B;
     padding: 0 !important;
-    max-width: 50px !important;
+    width: 50px !important;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
 }
 #sidebar_top {
-    background-color: #D8C0BF;
+    /* background-color: #D8C0BF; */
+    background-color: #8DA9C4;
 }
-.sidebar_item, #sidebar_top {
+.sidebar_item {
     width: 100%;
     padding-top: 100%;
     border-bottom: 1px solid white;
     position: relative;
+    display: block;
+    cursor: pointer;
 }
 .sidebar_item:first-child {
-    margin-top: 80px;
+    /* margin-top: 80px; */
+    border-top: 1px solid white;
+}
+.sidebar_item:last-child {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: none !important;
     border-top: 1px solid white;
 }
 .sidebar_item i, #sidebar_top i {
     position: absolute;
     top: 50%;
     left: 50%;
-    color: white;
+    /* color: white; */
+    color: #8DA9C4;
+    /* color: #B2AA8E; */
     font-size: 20px;
     transform: translate(-50%, -50%);
 }
 #sidebar_top i {
-    font-size: 25px;
-    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    color: #20364B;
 }
-.sidebar_item i.active {
-    color: #D8C0BF;
+.sidebar_item.active i {
+    /* color: #D8C0BF; */
+    color: white;
 }
 #sidebar_title {
     font-size: 25px;
@@ -92,10 +112,30 @@
     padding-bottom: 10px;
 }
 #content {
-    background-color: #FDF7F6;
+    /* background-color: #FDF7F6; */
+    background-color: #EFF3F7;
     width: calc(100vw - 50px) !important;
     padding-right: 0;
+    margin-left: 50px;
 }
 #content_body {
     margin-top: 50px;
+}
+.content_body {
+    margin-top: 50px;
+    position: relative;
+}
+.section_content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.hidden {
+    /* display: none; */
+    visibility: hidden;
+}
+
+.legend {
+    border: 2px solid red;
 }

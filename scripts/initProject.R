@@ -10,6 +10,7 @@ library(ggplot2)
 library(plotly)
 library(stringr)
 library(progress)
+library(twitteR)
 
 source("scripts/databaseHelper.R")
 source("scripts/helperFunctions.R")

@@ -1,7 +1,8 @@
+revenueModels <- revenueModels %>% mutate(description = c("Payable", "Free", "Payable with in-app purchases", "Free with in-app purchases"))
 
 
 appSearchedFunction <- function(whichApp){
-  allCategoryData %>% filter(trackCensoredName == whichApp) -> appSearched
+  allCategoryData %>% filter(trackCensoredName == "Facebook") -> appSearched
   appleCategories %>% filter(id == appSearched$primaryGenreId) %>% select(name) -> appSearched$primaryGenreId
   revenueModels %>% filter(id == appSearched$revenueId) %>% select(description) -> appSearched$revenueDescription
   appSearched %>% select(price, averageUserRating, userRatingCount, revenueDescription, primaryGenreId) -> appSearched

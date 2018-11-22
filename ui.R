@@ -12,16 +12,19 @@ library(shiny)
 # Define UI for application that draws a histogram
 htmlTemplate("template.html",
   categoryDropdown = selectInput("Category", 'Kies een gewenste categorie',
-                         choices = appleCategories$name, selected = appSearched$primaryGenreId),
-  appTextbox = selectizeInput("whichApp", 'Kies een gewenste app',
-                         choices = allCategoryData$trackCensoredName, selected = NULL, multiple = FALSE,
-                         options = NULL),
+                         choices = appleCategories$name, selected = "Games"),
+  appTextbox = selectInput("whichApp", 'Kies een gewenste app', 
+                           choices = c("Facebook", "Temple Run", "Spotify Music") , selected = ""),
   
 
   revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),
   revenueModelPopularityPlot = plotlyOutput("revenueModelPopularityPlot"),
   revenueModelComparisonPlots = plotlyOutput("revenueModelComparisonPlots"),
   weightedRatingPlot = plotlyOutput("weightedRatingPlot"),
-  summaryApp = tableOutput("summaryApp")
+  summaryApp = tableOutput("summaryApp"),
+  
+  
+  ratingApp = textOutput("ratingApp"),
+  ratingAppAdvice = textOutput("ratingAppAdvice")
 )
 

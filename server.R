@@ -48,6 +48,15 @@ shinyServer(function(input, output) {
     appSearchedFunction(input$whichApp)
     
   })
+  
+  output$ratingApp <- renderText(
+    ratingAppFunction(input$whichApp)
+  )
+  
+  output$ratingAppAdvice <- renderText(
+    ratingAppAdviceFunction(input$whichApp)
+  )
+  
 
   output$plot <- renderPlotly({
     ## lijst maken met gemiddelde rating per categorie en daarbij gewichten toekennen aan de hand van het aantal reviews.=======================

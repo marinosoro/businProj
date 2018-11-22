@@ -35,10 +35,20 @@ shinyServer(function(input, output) {
   })
 
 
+  output$plot2 <- renderPlotly({
+    p <-ggplot(data=filter(meanRatingGenreRevenue, category == input$Category), aes(x=revenueId, y=meanRating)) +
+      geom_bar(stat="identity")
+    
+    ggplotly(p)
+  })
+
   output$plot <- renderPlotly({
     ggplotly(ggplot(data=appleStore, aes(x=prime_genre, y=user_rating)) +
     geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
 
+  })
+  output$bestPrice <- renderText({
+    getCategoryBestPrice(input$Category)
   })
   output$weightedRatingPlot <- renderPlotly({
     ggplotly(getWeightedRatingPlot())
@@ -60,6 +70,7 @@ shinyServer(function(input, output) {
   
   
 })
+
 })
 
 

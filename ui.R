@@ -17,11 +17,13 @@ htmlTemplate("template.html",
   
 
 
-
   revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),
   revenueModelPopularityPlot = plotlyOutput("revenueModelPopularityPlot"),
   revenueModelComparisonPlots = plotlyOutput("revenueModelComparisonPlots"),
-  weightedRatingPlot = plotlyOutput("weightedRatingPlot")
+  weightedRatingPlot = plotlyOutput("weightedRatingPlot"),
+  plot2 = plotlyOutput("plot2"),
+  bestPrice = textOutput("bestPrice")
+  
 )
 
 

@@ -12,6 +12,18 @@ library(ggplot2)
 library(plotly)
 library(stringr)
 library(twitteR)
+library(NLP)
+library(syuzhet)
+library(tm)
+library(SnowballC)
+library(stringi)
+library(topicmodels)
+library(syuzhet)
+library(ROAuth)
+library(RColorBrewer)
+library(wordcloud)
+library(tm)
+
 
 
 source("scripts/databaseHelper.R")

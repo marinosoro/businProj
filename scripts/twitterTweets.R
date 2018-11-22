@@ -27,11 +27,11 @@ getTweets <- function(appName){
   ## get tweets about appName
   tweets <- searchTwitter(y, n = 1000, lang = 'en')
   dataFrame_tweets <- twListToDF(tweets)
+  assign("dataFrame_tweets", dataFrame_tweets, envir = .GlobalEnv)
 }
 
 ## function for getting wordcloud for appName
-getWordcloud <- function(appName, minFreq, maxWords){
-  dataFrame_tweets <- data.frame(getTweets(appName))
+getWordcloud <- function(minFreq, maxWords){
   ## getting wordcloud out of the tweets
   ### select text of tweets
   tweets_text<- dataFrame_tweets$text
@@ -90,8 +90,7 @@ gaugeChart <- function(pos,breaks=c(0,30,70,100)) {
 
 
 ## get gaugechart for appName
-getGaugeChart <- function(appName){
-  dataFrame_tweets <- data.frame(getTweets(appName))
+getGaugeChart <- function(){
   ### select text of tweets
   tweets_text<- dataFrame_tweets$text
   ### Replace blank space (“RT”)
@@ -121,7 +120,7 @@ getGaugeChart <- function(appName){
   Sentimentscores_tweets<-cbind("sentiment"=rownames(Sentimentscores_tweets),Sentimentscores_tweets)
   rownames(Sentimentscores_tweets)<-NULL
   
-  negativeValue <- (Sentimentscores_tweets$Score[2] + Sentimentscores_tweets$Score[5] + 
+  posValue <- (Sentimentscores_tweets$Score[2] + Sentimentscores_tweets$Score[5] + 
                       Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] + 
                       Sentimentscores_tweets$Score[10])
   
@@ -131,27 +130,28 @@ getGaugeChart <- function(appName){
               Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] + 
               Sentimentscores_tweets$Score[9] + Sentimentscores_tweets$Score[10])
   
-  Value <- round(((negativeValue/total)*100), digits = 2)
+  Value <- round(((posValue/total)*100), digits = 2)
   gaugeChart(Value,breaks=c(0,30,70,100))
 }
 
 
-## top 5 retweeted tweets
-getTopTweets <- function(appName, numberOfTweets){
-  dataFrame_tweets <- data.frame(getTweets(appName))
-  dataFrame_tweets <- filter(dataFrame_tweets, isRetweet == FALSE)
-  dataFrame_tweets <- dataFrame_tweets %>% arrange(desc(retweetCount))
-  dataFrame_tweets <- head(dataFrame_tweets, numberOfTweets)
-  dataFrame_tweets <- select(dataFrame_tweets, text)
+## top retweeted tweets
+getTopTweets <- function(numberOfTweets){
+  dataFrame_tweets2 <- filter(dataFrame_tweets, isRetweet == FALSE)
+  dataFrame_tweets2 <- dataFrame_tweets2 %>% arrange(desc(retweetCount))
+  dataFrame_tweets2 <- head(dataFrame_tweets2, numberOfTweets)
+  dataFrame_tweets2 <- select(dataFrame_tweets2, text)
   ### select text of tweets
-  tweets_text<- dataFrame_tweets$text
+  tweets_text<- dataFrame_tweets2$text
   ### Replace blank space (“RT”)
   tweets_text <- gsub("RT", "", tweets_text)
   ### terug in dataFrame zetten
-  dataFrame_tweets <- data.frame(tweets_text)
+  dataFrame_tweets2 <- data.frame(tweets_text)
+  assign("TopTweets", dataFrame_tweets2, envir = .GlobalEnv)
+  return(dataFrame_tweets2)
 }
   
-dataFrame_tweets <- data.frame(getTopTweets("Facebook", 10))
+
 
 
 

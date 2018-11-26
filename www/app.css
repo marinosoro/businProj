@@ -6,7 +6,7 @@
 html {
     background-color: #EFF3F7;
 }
-.container, #sidebar {
+#sidebar {
     min-height: 100vh;
 }
 #content_top {
@@ -18,9 +18,9 @@ html {
 }
 #content_top::after {
     content: '';
-    width: 90%;
+    width: calc(100% - 15px);
     position: absolute;
-    left: 5%;
+    left: 15px;
     bottom: -22px;
     height: 1px;
     background-color: white;
@@ -132,22 +132,17 @@ html {
     position: absolute;
     top: 0;
     width: 100%;
-<<<<<<< Updated upstream
-=======
     /* min-height: calc(100vh - 100px); */
->>>>>>> Stashed changes
 }
 
 .hidden {
-    /* display: none; */
-    visibility: hidden;
+    display: none;
+    /* visibility: hidden; */
 }
 
 .legend {
     border: 2px solid red;
 }
-<<<<<<< Updated upstream
-=======
 
 #content_home .section_button {
     text-align: center;
@@ -180,8 +175,9 @@ html {
     color: #1f364b;
 }
 
-#categoryBestPrice {
-    margin-left: -25px;
+#categoryBestPrice1, #categoryBestPrice2 {
+    display: inline-block;
+    /* margin-left: -25px; */
 }
 .pigletImage {
     max-height: 70vh;
@@ -189,4 +185,72 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
->>>>>>> Stashed changes
+
+#categoryInfo {
+    margin-bottom: 25px;
+}
+
+.infoBox {
+    padding: 8px 15px;
+    border: 1px solid #cccccc;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #FFF;
+    border-radius: 3px;
+}
+
+.infoBoxTitle {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.right {
+    text-align: right;
+}
+
+.selectize-input{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.selectize-input input {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.center {
+    text-align: center;
+}
+
+#companyAppIcon {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    position: absolute;
+    right: 10px;
+    /* left: 50%;
+    transform: translateX(-50%); */
+}
+
+.innerCol {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.divider {
+    width: calc(100% - 15px);
+    margin-left: 15px;
+    height: 1px;
+    border-bottom: 2px solid white;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#revenueModelComparisonPlots {
+    width: 100% !important;
+}
+
+h1 {
+    text-align: center;
+    font-size: 15px;
+}

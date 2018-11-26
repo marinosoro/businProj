@@ -12,8 +12,11 @@ $(document).ready(function() {
         // $("#content_" + newSection).show();
     })
 
-    // Hide pages on startup
-    // let sections = $(".section_content");
-    // sections.hide();
-    // $("#content_home").show();
+    let homeButtons = $(".section_button");
+    homeButtons.click(function() {
+        let target = $(this).attr("ref");
+        console.log(target);
+        $("#goto_" + target).trigger("click");
+    })
+
 })

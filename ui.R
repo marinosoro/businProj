@@ -3,7 +3,7 @@
 # run the application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-# 
+#
 #    http://shiny.rstudio.com/
 #
 
@@ -13,12 +13,11 @@ library(shiny)
 htmlTemplate("template.html",
   categoryDropdown = selectInput("Category", 'Kies een gewenste categorie',
                          choices = appleCategories$name, selected = "Games"),
-
   revenueModelDistributionPlot = plotlyOutput("revenueModelDistributionPlot"),
   revenueModelPopularityPlot = plotlyOutput("revenueModelPopularityPlot"),
   revenueModelComparisonPlots = plotlyOutput("revenueModelComparisonPlots"),
-  weightedRatingPlot = plotlyOutput("weightedRatingPlot")
+  weightedRatingPlot = plotlyOutput("weightedRatingPlot"),
+  rankingPerRevenueModelPlot = plotlyOutput("rankingPerRevenueModelPlot"),
+  categoryBestPrice = textOutput("categoryBestPrice")
+
 )
-
-
-

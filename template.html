@@ -38,7 +38,7 @@
                     <div class="container">
                         <div class="row" id="content_top">
                             <h1>
-                                Codecetera Dashboard
+                                Dashboard
                                 <span class="slogan">
                                     Because your apps need an app too.
                                 </span>
@@ -47,6 +47,7 @@
 
                         <div class="content_body">
                             <div class="section_content" id="content_home">
+<<<<<<< Updated upstream
                                 HOME
                             </div>
 
@@ -73,6 +74,72 @@
                                 FIRE
                             </div>
 
+=======
+                                <div class="row justify-content-around" style="margin-top: 125px;">
+                                    <div class="col-3 section_button">
+                                        <h3>Category Overview</h3>
+                                        <div class="section_icon_large">
+                                            <i class="fas fa-chart-pie"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 section_button">
+                                        <h3>Company Apps</h3>
+                                        <div class="section_icon_large">
+                                            <i class="fas fa-hand-holding-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 section_button">
+                                        <h3>Insights</h3>
+                                        <div class="section_icon_large">
+                                            <i class="fas fa-lightbulb"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section_content hidden" id="content_overview">
+                                <div class="row">
+                                    <div class="col-4">
+                                        {{categoryDropdown}}
+                                    </div>
+                                    <div class="col-4 offset-4 row">
+                                        <div class="col-auto">
+                                            <p style="display:inline-block;">Ideal Price: $</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            {{categoryBestPrice}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    {{revenueModelComparisonPlots}}
+                                </div>
+                            </div>
+
+                            <div class="section_content hidden" id="content_company">
+                                COMPANY
+                                <p>
+                                    Overiew of company apps and social media insights
+                                </p>
+                            </div>
+
+                            <div class="section_content hidden" id="content_suggestions">
+                                INSIGHTS
+                                <p>
+                                    Written tips / conclusions made according to generated data.
+                                </p>
+                            </div>
+
+                            <div class="section_content hidden" id="content_fire">
+                                <div class="row">
+                                    DEVELOPERS & SOURCES
+                                </div>
+                                <div class="row" style="position:relative;">
+                                    <img src="dikkop.jpg" class="pigletImage" alt="piggy is happy.">
+                                </div>
+                            </div>
+
+>>>>>>> Stashed changes
                         </div>
                     </div>
 

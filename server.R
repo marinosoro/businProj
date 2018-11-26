@@ -1,9 +1,9 @@
 #
-# This is the server logic of a Shiny web application. You can run the 
+# This is the server logic of a Shiny web application. You can run the
 # application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-# 
+#
 #    http://shiny.rstudio.com/
 
 source("./scripts/initProject.R")
@@ -14,11 +14,9 @@ if (!exists("databaseLoaded") || !databaseLoaded) {
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  
-  output$plot <- renderPlotly({
-    ggplotly(ggplot(data=appleStore, aes(x=prime_genre, y=user_rating)) +
-    geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
 
+  output$rankingPerRevenueModelPlot <- renderPlotly({
+    ratingPerRevenueModel(input$Category)
   })
   output$weightedRatingPlot <- renderPlotly({
     ggplotly(getWeightedRatingPlot())
@@ -31,6 +29,9 @@ shinyServer(function(input, output) {
   })
   output$revenueModelComparisonPlots <- renderPlotly({
     revenueModelComparisonPlots(input$Category)
+  })
+  output$categoryBestPrice <- renderText({
+    getCategoryBestPrice(input$Category)
   })
 
 })

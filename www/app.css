@@ -3,6 +3,9 @@
     src: url("Hunters.otf") format("opentype");
 }
 
+html {
+    background-color: #EFF3F7;
+}
 .container, #sidebar {
     min-height: 100vh;
 }
@@ -129,6 +132,10 @@
     position: absolute;
     top: 0;
     width: 100%;
+<<<<<<< Updated upstream
+=======
+    /* min-height: calc(100vh - 100px); */
+>>>>>>> Stashed changes
 }
 
 .hidden {
@@ -139,3 +146,47 @@
 .legend {
     border: 2px solid red;
 }
+<<<<<<< Updated upstream
+=======
+
+#content_home .section_button {
+    text-align: center;
+    /* padding-top: 100%; */
+}
+
+.section_button h3 {
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.section_icon_large {
+    width: 100%;
+    padding-top: 70%;
+    position: relative;
+    border: 3px solid #1f364b;
+    background-color: white;
+    cursor: pointer;
+}
+
+.section_icon_large:hover i {
+    color: #d43e43;
+}
+
+.section_icon_large i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 75px;
+    color: #1f364b;
+}
+
+#categoryBestPrice {
+    margin-left: -25px;
+}
+.pigletImage {
+    max-height: 70vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+>>>>>>> Stashed changes

@@ -7,7 +7,7 @@ ratingAppFunction <- function(whichApp) {
 }
 
 ratingAppAdviceFunction <- function(whichApp) {
-  allCategoryData %>% filter(trackCensoredName == whichApp) %>% select(averageUserRating, primaryGenreId, revenueId) -> ratingAppSearched
+  allCategoryData %>% filter(trackCensoredName == "Facebook") %>% select(averageUserRating, primaryGenreId, revenueId) -> ratingAppSearched
   allCategoryData %>% filter(primaryGenreId == ratingAppSearched$primaryGenreId) %>% select(averageUserRating) -> ratingGenre
   meanRatingGenre <- mean(ratingGenre$averageUser)
   if (ratingAppSearched$averageUserRating > meanRatingGenre + 0.2) 
@@ -15,6 +15,7 @@ ratingAppAdviceFunction <- function(whichApp) {
   } else if (ratingAppSearched$averageUserRating < meanRatingGenre - 0.2) 
     { advice <- ratingAdviceTable %>% filter(adviceId == 2) %>% select(adviceDescription) 
   } else { advice <- ratingAdviceTable %>% filter(adviceId == 3) %>% select(adviceDescription) } 
+  advice <- advice %>% as.character()
   return(advice)
 }
 

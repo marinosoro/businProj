@@ -53,3 +53,17 @@ dbDisconnectAll <- function(){
   lapply( dbListConnections(MySQL()), function(x) dbDisconnect(x) )
   cat(sprintf("%s connection(s) closed.\n", ile))
 }
+
+
+getCompanyApps <- function() {
+  apps <- left_join(companyApps, allCategoryData, by = c("id" = "trackId"))
+  return(apps)
+}
+
+getAppIcon <- function(id) {
+  html <- read_html( paste0("https://itunes.apple.com/app/id", id) )
+  src <- html %>% 
+    html_node("img.we-artwork__image") %>% 
+    html_attr("src")
+  return(src)
+}

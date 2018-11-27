@@ -1,5 +1,11 @@
 ## alle datasets per categorie samenvoegen
 
+<<<<<<< HEAD
+=======
+meanRatingPerRevenueModel <- function(categoryName) {
+  
+}
+>>>>>>> 0df9b2aa83f0d010b90229e47fed08d9fb56b0b2
 appleCategory_Business$X <- NULL
 appleCategory_Games$row_names <- NULL
 appleCategory_Weather$row_names <- NULL
@@ -8,7 +14,9 @@ allCategoryData <- rbind(appleCategory_Book, appleCategory_Business, appleCatego
                           appleCategory_Entertainment, appleCategory_Finance, appleCategory_Food_Drink, appleCategory_Games,
                           appleCategory_Health_Fitness, appleCategory_Lifestyle, appleCategory_Magazines_Newspapers,
                           appleCategory_Medical, appleCategory_Music, appleCategory_Navigation, appleCategory_News, 
+
                           appleCategory_Photo_Video, appleCategory_cProductivity, appleCategory_Reference, appleCategory_Shopping,
+
                           appleCategory_Social_Networking, appleCategory_Sports, appleCategory_Stickers, appleCategory_Travel,
                           appleCategory_Utilities, appleCategory_Weather)
 
@@ -54,4 +62,18 @@ for(i in 1:24){
   i = (i + 1)
 }
 
+<<<<<<< HEAD
 remove(i, j, k, z, y, y1)
+=======
+remove(i, j, k, z, y, y1)
+
+## choices maken voor in selectinput in shiny
+
+CategoryChoices <- appleCategories
+CategoryChoices$row_names <- NULL
+CategoryChoices$id <- NULL
+
+
+
+
+>>>>>>> 0df9b2aa83f0d010b90229e47fed08d9fb56b0b2

@@ -1,16 +1,11 @@
 #
-# This is the server logic of a Shiny web application. You can run the 
+# This is the server logic of a Shiny web application. You can run the
 # application by clicking 'Run App' above.
 #
 # Find out more about building applications with Shiny here:
-# 
+#
 #    http://shiny.rstudio.com/
 
-source("scripts/initProject.R")
-
-if (!exists("databaseLoaded") || !databaseLoaded) {
-  source(file = "scripts/load_online_database.R")
-}
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -25,10 +20,14 @@ shinyServer(function(input, output) {
   })  
   
 
-  output$plot <- renderPlotly({
-    ggplotly(ggplot(data=appleStore, aes(x=prime_genre, y=user_rating)) +
-    geom_bar(stat="identity") + coord_flip(), tooltip = c("y"))
+  source("./scripts/initProject.R", local = TRUE)
 
+  if (!exists("databaseLoaded") || !databaseLoaded) {
+    source(file = "./scripts/load_online_database.R", local = TRUE)
+  }
+
+  output$rankingPerRevenueModelPlot <- renderPlotly({
+    ratingPerRevenueModel(input$Category)
   })
   output$weightedRatingPlot <- renderPlotly({
     ggplotly(getWeightedRatingPlot())
@@ -42,6 +41,7 @@ shinyServer(function(input, output) {
   output$revenueModelComparisonPlots <- renderPlotly({
     revenueModelComparisonPlots(input$Category)
   })
+
   
   output$summaryApp <- renderTable({
     
@@ -57,6 +57,30 @@ shinyServer(function(input, output) {
     ratingAppAdviceFunction(input$whichApp)
   )
   
+
+  output$categoryBestPrice1 <- renderText({
+    getCategoryBestPrice(input$Category)
+  })
+  output$categoryBestPrice2 <- renderText({
+    getCategoryBestPrice(input$Category)
+  })
+  output$companyAppId <- renderText({
+    (getCompanyApps() %>% filter(trackCensoredName == input$companyApp))$id
+  })
+  output$companyAppIcon <- renderText({
+    c(
+        '<img id="companyAppIcon" src="',
+        (getCompanyApps() %>% filter(trackCensoredName == input$companyApp))$id %>% getAppIcon(),
+        '">'
+    )
+  })
+
+  outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryBestPrice2", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppId", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppIcon", suspendWhenHidden=FALSE)
+
 
   output$plot <- renderPlotly({
     ## lijst maken met gemiddelde rating per categorie en daarbij gewichten toekennen aan de hand van het aantal reviews.=======================

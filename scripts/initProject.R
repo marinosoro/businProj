@@ -15,4 +15,6 @@ library(progress)
 source("scripts/databaseHelper.R")
 source("scripts/helperFunctions.R")
 source("scripts/revenueModelPieCharts.R")
+
 source("scripts/appSearchedFunction.R")
+

@@ -37,7 +37,8 @@ getWordcloud <- function(minFreq, maxWords){
   tweets_text<- dataFrame_tweets$text
   ### Replace blank space (“RT”)
   tweets_text <- gsub("RT", "", tweets_text)
-  ### ??? deze werkte niet dus laat ik voorlopig weg XD
+  ### extra
+  iconv(tweets_text, from = 'UTF-8', to = 'ASCII//TRANSLIT')
   ### convert all text to lower case
   tweets_text<- tolower(tweets_text)
   ### Replace @UserName
@@ -52,9 +53,14 @@ getWordcloud <- function(minFreq, maxWords){
   tweets_text <- gsub("^ ", "", tweets_text)
   ### Remove blank spaces at the end
   tweets_text <- gsub(" $", "", tweets_text)
+  ### extra filters
+  tweets_text <- gsub("*€*", "" , tweets_text)
+  tweets_text <- gsub("*â*", "" , tweets_text)
   ### clean up by removing stop words
   tweets_corp <- Corpus(VectorSource(tweets_text))
   tweets.text.corpus <- tm_map(tweets_corp, function(x)removeWords(x,stopwords()))
+  ### extra filters
+  tweets.text.corpus <- gsub("*â*", "" , tweets.text.corpus)
   ### generate wordcloud
   wordcloud(tweets.text.corpus,min.freq = minFreq,colors=brewer.pal(8, "Dark2"),random.color = TRUE,max.words = maxWords)
 }

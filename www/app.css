@@ -175,7 +175,7 @@ html {
     color: #1f364b;
 }
 
-#categoryBestPrice1, #categoryBestPrice2 {
+#categoryBestPrice1, #categoryBestPrice2, #categoryNonZeroPrice {
     display: inline-block;
     /* margin-left: -25px; */
 }

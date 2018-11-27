@@ -24,3 +24,9 @@ ratingAdviceTable$adviceId <- c(1, 2, 3)
 ratingAdviceTable$adviceDescription <- c("Your app is performing better than the average app in your category", 
                                          "your app is performing worse than average in your category", 
                                          "your app is has an average rating for his category")
+
+priceAdviceTable <- data.frame(adviceId = numeric(3), adviceDescription = character(3), stringsAsFactors = FALSE)
+priceAdviceTable$adviceId <- c(1, 2, 3)
+priceAdviceTable$adviceDescription <- c("The price of your app is too low, you should consider charging a higher price",
+                                        "The price of your app is too high, you should consider charging a lower price", 
+                                        "Your app has the optimal price")

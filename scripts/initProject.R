@@ -1,8 +1,10 @@
 library(RMySQL)
+library(plyr)
 library(dplyr)
 library(httr)
 library(jsonlite)
 library(lubridate)
+library(progress)
 library(rvest)
 library(shiny)
 library(ggplot2)
@@ -21,6 +23,7 @@ library(ROAuth)
 library(RColorBrewer)
 library(wordcloud)
 library(scales)
+
 
 source("scripts/databaseHelper.R")
 source("scripts/helperFunctions.R")

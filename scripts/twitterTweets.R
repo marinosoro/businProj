@@ -6,6 +6,7 @@ library("SnowballC")
 library("stringi")
 library("topicmodels")
 library("syuzhet")
+library("twitteR")
 library("ROAuth")
 library("RColorBrewer")
 library("wordcloud")
@@ -15,15 +16,15 @@ library("tm")
 getTweets <- function(appName){
   x <- paste("'#", appName, sep="")
   y <- paste(x, "'", sep="")
-  
-  # Change the next four lines based on your own consumer_key, consume_secret, access_token, and access_secret. 
+
+  # Change the next four lines based on your own consumer_key, consume_secret, access_token, and access_secret.
   consumer_key <- "WCC8jBuEIcUpRC734ROvG7l1t"
   consumer_secret <- "yj9vHCIEMnw4mMAiRRjS8calnjgLgNzx4sRs4acdnl0nm4X6WX"
   access_token <- "1060085268504604672-K3B05SUfDduX7OIsR8UjUIGOO7UUyc"
   access_secret <- "vhhGG7k7xpOLM5d9R3tLkkOpibKPLoGiiJ45UBki8U68l"
-  
+
   setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
-  
+
   ## get tweets about appName
   tweets <- searchTwitter(y, n = 1000, lang = 'en')
   dataFrame_tweets <- twListToDF(tweets)
@@ -77,7 +78,7 @@ gaugeChart <- function(pos,breaks=c(0,30,70,100)) {
     y        <- c(r1*sin(th),rev(r2*sin(th)))
     return(data.frame(x,y))
   }
-  ggplot()+ 
+  ggplot()+
     geom_polygon(data=get.poly(breaks[1],breaks[2]),aes(x,y),fill="#E16768")+
     geom_polygon(data=get.poly(breaks[2],breaks[3]),aes(x,y),fill="#3c6372")+
     geom_polygon(data=get.poly(breaks[3],breaks[4]),aes(x,y),fill="#144b7f")+
@@ -91,7 +92,7 @@ gaugeChart <- function(pos,breaks=c(0,30,70,100)) {
           axis.title=element_blank(),
           axis.ticks=element_blank(),
           panel.grid=element_blank(),
-          panel.border=element_blank()) 
+          panel.border=element_blank())
 }
 
 
@@ -116,8 +117,8 @@ getGaugeChart <- function(){
   tweets_text <- gsub("^ ", "", tweets_text)
   ### Remove blank spaces at the end
   tweets_text <- gsub(" $", "", tweets_text)
-  
-  ## getting sentiment 
+
+  ## getting sentiment
   ### getting emotions using in-built function
   mysentiment_tweets<-get_nrc_sentiment((tweets_text))
   ### calculationg total score for each sentiment
@@ -125,17 +126,17 @@ getGaugeChart <- function(){
   names(Sentimentscores_tweets)<-"Score"
   Sentimentscores_tweets<-cbind("sentiment"=rownames(Sentimentscores_tweets),Sentimentscores_tweets)
   rownames(Sentimentscores_tweets)<-NULL
-  
-  posValue <- (Sentimentscores_tweets$Score[2] + Sentimentscores_tweets$Score[5] + 
-                      Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] + 
+
+  posValue <- (Sentimentscores_tweets$Score[2] + Sentimentscores_tweets$Score[5] +
+                      Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] +
                       Sentimentscores_tweets$Score[10])
-  
-  total <- (Sentimentscores_tweets$Score[1] + Sentimentscores_tweets$Score[2] + 
-              Sentimentscores_tweets$Score[3] + Sentimentscores_tweets$Score[4] + 
-              Sentimentscores_tweets$Score[5] + Sentimentscores_tweets$Score[6] + 
-              Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] + 
+
+  total <- (Sentimentscores_tweets$Score[1] + Sentimentscores_tweets$Score[2] +
+              Sentimentscores_tweets$Score[3] + Sentimentscores_tweets$Score[4] +
+              Sentimentscores_tweets$Score[5] + Sentimentscores_tweets$Score[6] +
+              Sentimentscores_tweets$Score[7] + Sentimentscores_tweets$Score[8] +
               Sentimentscores_tweets$Score[9] + Sentimentscores_tweets$Score[10])
-  
+
   Value <- round(((posValue/total)*100), digits = 2)
   gaugeChart(Value,breaks=c(0,30,70,100))
 }
@@ -156,15 +157,3 @@ getTopTweets <- function(numberOfTweets){
   assign("TopTweets", dataFrame_tweets2, envir = .GlobalEnv)
   return(dataFrame_tweets2)
 }
-  
-
-
-
-
-
-
-
-
-
-
-

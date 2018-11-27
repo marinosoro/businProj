@@ -38,7 +38,7 @@ getAPIContent <- function(url, params, method, page) {
   # Code for GET requests
   if (missing(method) || method == "GET") {
     response <- GET(url, query = params)
-  } 
+  }
   # Code for POST requests
   else if (method == "POST") {
     response <- POST(url, body = params, encode = "json")
@@ -73,8 +73,8 @@ getCompanyAppByid <- function(id) {
 
 getAppIcon <- function(id) {
   html <- read_html( paste0("https://itunes.apple.com/app/id", id) )
-  src <- html %>% 
-    html_node("img.we-artwork__image") %>% 
+  src <- html %>%
+    html_node("img.we-artwork__image") %>%
     html_attr("src")
   return(src)
 }
@@ -82,7 +82,7 @@ getAppIcon <- function(id) {
 getSortedRevenueIdsForCategory <- function(categoryName) {
   categoryNameSlug <- str_replace(categoryName, pattern = ' ', replacement = '_')
   categoryNameSlug <- str_replace(categoryNameSlug, pattern = '& ', replacement = '')
-  
+
   categoryDFName <- paste0("appleCategory_", categoryNameSlug)
   categoryDF <- get(categoryDFName, envir = .GlobalEnv)
   model1Index <- model2Index <- model3Index <- model4Index <- 0
@@ -105,13 +105,13 @@ getSortedRevenueIdsForCategory <- function(categoryName) {
   model2Index <- model2Index / count2
   model3Index <- model3Index / count3
   model4Index <- model4Index / count4
-  
+
   indexes <- c("1" = model1Index, "2" = model2Index, "3" = model3Index, "4" = model4Index)
   sortedIndexes <- sort(indexes, T)
-  
+
   names <- names(sortedIndexes)
   names <- as.numeric(names)
- 
+
   return(names)
 }
 
@@ -123,9 +123,9 @@ getCategoryBestPriceById <- function(catId) {
 
 getCategoryBestPrice <- function(categoryName, nonZero) {
   if (missing(nonZero)) nonZero = F
-  
+
   sortedIds <- getSortedRevenueIdsForCategory(categoryName)
-  
+
   if (!nonZero) Id <- sortedIds[1]
   else {
     # kies hoogste van 1 en 3
@@ -135,22 +135,22 @@ getCategoryBestPrice <- function(categoryName, nonZero) {
     else Id <- sortedIds[4]
   }
   result <- 0
-  
+
   if (Id %in% c(4,2)){
     restult <- 0
   }
-  
+
   else {
     categoryNameSlug <- str_replace(categoryName, pattern = ' ', replacement = '_')
     categoryNameSlug <- str_replace(categoryNameSlug, pattern = '& ', replacement = '')
-    
+
     categoryDFName <- paste0("appleCategory_", categoryNameSlug)
     categoryDF <- get(categoryDFName, envir = .GlobalEnv)
     filteredCategoryDF <- filter(categoryDF, revenueId == Id)
     som <- 0
     som2 <- 0
     allApps <- split(filteredCategoryDF, seq_len(nrow(filteredCategoryDF)))
-    
+
     for (rank in 1:nrow(filteredCategoryDF)) {
       app <- allApps[[rank]]
       inverseRank <- nrow(filteredCategoryDF) - rank + 1

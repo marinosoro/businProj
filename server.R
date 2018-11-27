@@ -10,16 +10,6 @@
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-  output$helloWorld <- renderText({
-    "Hello World"
-  })
-  
-  output$Category_output <- renderPlotly({
-    googlePlayStore %>% group_by(Category) %>% ggplot(aes(Category)) + geom_bar() + coord_flip() -> g
-    ggplotly(g) 
-  })  
-  
-
   source("./scripts/initProject.R", local = TRUE)
 
   if (!exists("databaseLoaded") || !databaseLoaded) {
@@ -28,6 +18,9 @@ shinyServer(function(input, output) {
 
   output$rankingPerRevenueModelPlot <- renderPlotly({
     ratingPerRevenueModel(input$Category)
+  })
+  output$bestPrice <- renderText({
+    getCategoryBestPrice(input$Category)
   })
   output$weightedRatingPlot <- renderPlotly({
     ggplotly(getWeightedRatingPlot())
@@ -75,7 +68,7 @@ shinyServer(function(input, output) {
   output$companyAppCategoryBestPrice <- renderText({
     (getCompanyAppByName(input$companyApp))$primaryGenreId %>% getCategoryBestPriceById()
   })
-  
+
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice2", suspendWhenHidden=FALSE)
@@ -84,6 +77,6 @@ shinyServer(function(input, output) {
   outputOptions(output, "companyAppIcon", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppCurrentPrice", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppCategoryBestPrice", suspendWhenHidden=FALSE)
-  
-  
+
+
 })

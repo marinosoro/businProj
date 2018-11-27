@@ -10,11 +10,18 @@ library(plotly)
 library(stringr)
 library(plotly)
 library(progress)
-
+library(twitteR)
+library(NLP)
+library(syuzhet)
+library(tm)
+library(SnowballC)
+library(stringi)
+library(topicmodels)
+library(ROAuth)
+library(RColorBrewer)
+library(wordcloud)
 
 source("scripts/databaseHelper.R")
 source("scripts/helperFunctions.R")
 source("scripts/revenueModelPieCharts.R")
-
 source("scripts/appSearchedFunction.R")
-

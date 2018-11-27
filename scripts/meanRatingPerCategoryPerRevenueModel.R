@@ -63,8 +63,11 @@ for(i in 1:24){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 remove(i, j, k, z, y, y1)
 =======
+=======
+>>>>>>> d0acdf0e2db834e3c000d54ff81c7a6edc6aa5f6
 remove(i, j, k, z, y, y1)
 
 ## choices maken voor in selectinput in shiny
@@ -76,4 +79,7 @@ CategoryChoices$id <- NULL
 
 
 
+<<<<<<< HEAD
 >>>>>>> 0df9b2aa83f0d010b90229e47fed08d9fb56b0b2
+=======
+>>>>>>> d0acdf0e2db834e3c000d54ff81c7a6edc6aa5f6

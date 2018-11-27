@@ -32,9 +32,9 @@ htmlTemplate("template.html",
     companyAppId = textOutput("companyAppId"),
     companyAppIcon = htmlOutput("companyAppIcon"),
     companyAppCategoryBestPrice = textOutput("companyAppCategoryBestPrice"),
-    
-    
+
+
     ratingApp = textOutput("ratingApp"),
     ratingAppAdvice = textOutput("ratingAppAdvice")
-    
+
 )

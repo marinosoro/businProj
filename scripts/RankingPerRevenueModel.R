@@ -33,11 +33,16 @@ ratingPerRevenueModel <- function(categoryName) {
   model4Percentage <- model4Index / sum(model1Index, model2Index, model3Index, model4Index)
   
   percentages <- c(model1Percentage, model2Percentage, model3Percentage, model4Percentage)
+<<<<<<< HEAD
   data <- data.frame(revenueModel = c('Paid','Free','Paid, iAP','Free, iAP'),
+=======
+  data <- data.frame(revenueModel = c('Model 1','Model 2','Model 3','Model 4'),
+>>>>>>> d0acdf0e2db834e3c000d54ff81c7a6edc6aa5f6
                      ratingOfRanking = percentages)
   
 
   ## een bar chart per categorie met de ranking score:
+<<<<<<< HEAD
   colors = c("#3c6372", "#E16768", "#d62f30", "#144b7f")
   
   plot_ly(data = data,
@@ -51,6 +56,13 @@ ratingPerRevenueModel <- function(categoryName) {
          plot_bgcolor='transparent',
          paper_bgcolor='transparent',
          showlegend = F)
+=======
+  p <-ggplot(data, aes(x=revenueModel, y=ratingOfRanking)) +
+  geom_bar(stat="identity")
+
+  ggplotly(p)
+
+>>>>>>> d0acdf0e2db834e3c000d54ff81c7a6edc6aa5f6
 }
 
 

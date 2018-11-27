@@ -16,9 +16,20 @@ getAppCategories <- function(requestedId, store) {
   return(categories)
 }
 
-getAppRank <- function(requestedId, store) {
+getAppRankById <- function(requestedId, store) {
+  if(missing(store)) store = "apple"
   if (store == "apple") {
-    return(filter(appleRanking, id == requestedId)[["rank"]])
+    return(filter(allCategoryData, id == requestedId)[["rank"]])
+  } else if (store == "google") {
+    ##
+  } else {
+    return(NA)
+  }
+}
+getAppRank <- function(appName, store) {
+  if(missing(store)) store = "apple"
+  if (store == "apple") {
+    return(filter(allCategoryData, trackCensoredName == appName)[["rank"]])
   } else if (store == "google") {
     ##
   } else {
@@ -160,4 +171,9 @@ getCategoryBestPrice <- function(categoryName, nonZero) {
     result <- som / som2
   }
   return(round(result, digits = 2))
+}
+
+getCategoryNameById <- function(catId) {
+  result <- appleCategories %>% filter(id == catId) %>% head(1)
+  return(result$name)
 }

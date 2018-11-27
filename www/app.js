@@ -19,4 +19,7 @@ $(document).ready(function() {
         $("#goto_" + target).trigger("click");
     })
 
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
 })

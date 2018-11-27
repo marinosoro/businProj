@@ -27,6 +27,7 @@ htmlTemplate("template.html",
     rankingPerRevenueModelPlot = plotlyOutput("rankingPerRevenueModelPlot"),
     categoryBestPrice1 = textOutput("categoryBestPrice1"),
     categoryBestPrice2 = textOutput("categoryBestPrice2"),
+    companyAppCurrentPrice = textOutput("companyAppCurrentPrice"),
     companyAppId = textOutput("companyAppId"),
     companyAppIcon = htmlOutput("companyAppIcon"),
     

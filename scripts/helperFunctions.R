@@ -60,6 +60,18 @@ getCompanyApps <- function() {
   return(apps)
 }
 
+getCompanyAppByName <- function(name) {
+  apps <- getCompanyApps()
+  app <- (filter(apps, trackCensoredName == name)) %>% head(1)
+  return(app)
+}
+
+getCompanyAppByid <- function(id) {
+  apps <- getCompanyApps()
+  app <- (filter(apps, id == id)) %>% head(1)
+  return(app)
+}
+
 getAppIcon <- function(id) {
   html <- read_html( paste0("https://itunes.apple.com/app/id", id) )
   src <- html %>% 

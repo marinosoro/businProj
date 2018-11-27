@@ -47,11 +47,15 @@ shinyServer(function(input, output) {
         '">'
     )
   })
+  output$companyAppCurrentPrice <- renderText({
+    (getCompanyAppByName(input$companyApp))$formattedPrice
+  })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice2", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppId", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppIcon", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppCurrentPrice", suspendWhenHidden=FALSE)
 
 })

@@ -91,6 +91,10 @@ shinyServer(function(input, output) {
   output$categoryOptimalRevenueModel <- renderText({
       categoryOptimalRevenueModel()
   })
+  output$companyAppCategory <- renderText({
+      appCatId <- (getCompanyAppByName(input$companyApp))$primaryGenreId
+      getCategoryNameById(appCatId)
+  })
   companyAppOptimalRevenueModel <- reactive({
       appCategoryId <- (getCompanyAppByName(input$companyApp))$primaryGenreId
       appCategoryName <- getCategoryNameById(appCategoryId)
@@ -120,6 +124,10 @@ shinyServer(function(input, output) {
   output$categoryApplicationGrid <- renderText({
     generateApplicationGrid(input$Category)
   })
+  output$categoryApplicationGridSecondary <- renderText({
+      appList <- getCompanyAppsForCategory(input$Category, secondary = T)
+      generateApplicationGrid(appList = appList)
+  })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
@@ -135,5 +143,7 @@ shinyServer(function(input, output) {
   outputOptions(output, "companyAppRevenueModelComparator", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryOptimalRevenueModel", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryApplicationGrid", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryApplicationGridSecondary", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppCategory", suspendWhenHidden=FALSE)
 
 })

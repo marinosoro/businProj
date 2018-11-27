@@ -216,6 +216,7 @@ html {
 .selectize-input input {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    width: 100% !important;
 }
 
 .center {
@@ -228,8 +229,15 @@ html {
     border-radius: 15px;
 }
 #companyAppIcon {
+    width: 200px;
+    height: 200px;
     position: absolute;
     right: 10px;
+    top: 0px;
+}
+#companyAppSelectionRow {
+    margin-top: 0px;
+    position: relative;
 }
 
 .innerCol {

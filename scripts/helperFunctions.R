@@ -182,9 +182,13 @@ getCategoryIdByName <- function(catName) {
   return(result$id)
 }
 
-getCompanyAppsForCategory <- function(catName) {
+getCompanyAppsForCategory <- function(catName, secondary) {
     companyApps <- getCompanyApps()
     categoryId <- getCategoryIdByName(catName)
-    result <- filter(companyApps, primaryGenreId == categoryId)
+    if (missing(secondary) || secondary == F) {
+        result <- filter(companyApps, primaryGenreId == categoryId)
+    } else {
+        result <- filter(companyApps, grepl(categoryId, genreIds) & primaryGenreId != categoryId)
+    }
     return(result)
 }

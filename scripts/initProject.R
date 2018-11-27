@@ -27,6 +27,7 @@ library(scales)
 
 source("scripts/databaseHelper.R")
 source("scripts/helperFunctions.R")
+source("scripts/generateApplicationGrid.R")
 source("scripts/revenueModelPieCharts.R")
 source("scripts/appSearchedFunction.R")
 source("scripts/twitterTweets.R")

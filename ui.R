@@ -37,6 +37,8 @@ htmlTemplate("template.html",
     companyAppCurrentRevenueModel = textOutput("companyAppCurrentRevenueModel"),
     companyAppRevenueModelComparator = htmlOutput("companyAppRevenueModelComparator"),
     categoryOptimalRevenueModel = textOutput("categoryOptimalRevenueModel"),
+    categoryApplicationGrid = htmlOutput("categoryApplicationGrid"),
+    
 
 
     ratingApp = textOutput("ratingApp"),

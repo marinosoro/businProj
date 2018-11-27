@@ -222,14 +222,14 @@ html {
     text-align: center;
 }
 
-#companyAppIcon {
+#companyAppIcon, .appIconGridItem {
     width: 100px;
     height: 100px;
     border-radius: 15px;
+}
+#companyAppIcon {
     position: absolute;
     right: 10px;
-    /* left: 50%;
-    transform: translateX(-50%); */
 }
 
 .innerCol {

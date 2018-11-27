@@ -117,6 +117,9 @@ shinyServer(function(input, output) {
         )
     }
   })
+  output$categoryApplicationGrid <- renderText({
+    generateApplicationGrid(input$Category)
+  })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
@@ -131,5 +134,6 @@ shinyServer(function(input, output) {
   outputOptions(output, "companyAppCurrentRevenueModel", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppRevenueModelComparator", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryOptimalRevenueModel", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryApplicationGrid", suspendWhenHidden=FALSE)
 
 })

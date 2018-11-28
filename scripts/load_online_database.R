@@ -33,5 +33,6 @@ appleCategory_Shopping <- getDatabaseTable("appleCategory_Shopping")
 appleCategory_Stickers <- getDatabaseTable("appleCategory_Stickers")
 allCategoryData <- getDatabaseTable("AllCategoryData")
 revenueModels <- getDatabaseTable("revenueModels")
+companyApps <- getDatabaseTable("companyApps")
 
 databaseLoaded <- TRUE

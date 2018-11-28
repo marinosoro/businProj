@@ -9,7 +9,7 @@
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  
+
   source("./scripts/initProject.R", local = TRUE)
 
   if (!exists("databaseLoaded") || !databaseLoaded) {
@@ -44,13 +44,13 @@ shinyServer(function(input, output) {
     ratingAppAdviceFunction(input$whichApp)
   )
   output$categoryBestPrice1 <- renderText({
-    getCategoryBestPrice(input$Category)
+    getCategoryBestPrice(input$Category) %>% dollar()
   })
   output$categoryBestPrice2 <- renderText({
-    getCategoryBestPrice(input$Category)
+    getCategoryBestPrice(input$Category) %>% dollar()
   })
   output$categoryNonZeroPrice <- renderText({
-    getCategoryBestPrice(input$Category, nonZero = T)
+    getCategoryBestPrice(input$Category, nonZero = T) %>% dollar()
   })
   output$companyAppId <- renderText({
     (getCompanyApps() %>% filter(trackCensoredName == input$companyApp))$id
@@ -62,11 +62,60 @@ shinyServer(function(input, output) {
         '">'
     )
   })
+  companyAppCurrentPrice <- reactive({
+      (getCompanyAppByName(input$companyApp))$price
+  })
   output$companyAppCurrentPrice <- renderText({
-    (getCompanyAppByName(input$companyApp))$formattedPrice
+    companyAppCurrentPrice() %>% dollar()
+  })
+  companyAppCategoryBestPrice <- reactive({
+      (getCompanyAppByName(input$companyApp))$primaryGenreId %>% getCategoryBestPriceById()
   })
   output$companyAppCategoryBestPrice <- renderText({
-    (getCompanyAppByName(input$companyApp))$primaryGenreId %>% getCategoryBestPriceById()
+      companyAppCategoryBestPrice() %>% dollar()
+  })
+  output$companyAppPriceComparator <- renderText({
+    if (companyAppCurrentPrice() == companyAppCategoryBestPrice()) {
+        c(
+            '<i class="fas fa-check"></i>'
+        )
+    } else {
+        c(
+            '<i class="fas fa-times"></i>'
+        )
+    }
+  })
+  categoryOptimalRevenueModel <- reactive({
+      (revenueModels %>% filter(id == getSortedRevenueIdsForCategory(input$Category) %>% head(1)) %>% head(1))$description
+  })
+  output$categoryOptimalRevenueModel <- renderText({
+      categoryOptimalRevenueModel()
+  })
+  companyAppOptimalRevenueModel <- reactive({
+      appCategoryId <- (getCompanyAppByName(input$companyApp))$primaryGenreId
+      appCategoryName <- getCategoryNameById(appCategoryId)
+      (revenueModels %>% filter(id == getSortedRevenueIdsForCategory(appCategoryName) %>% head(1)) %>% head(1))$description
+  })
+  output$companyAppOptimalRevenueModel <- renderText({
+      companyAppOptimalRevenueModel()
+  })
+  companyAppCurrentRevenueModel <- reactive({
+      revenueId <- (getCompanyAppByName(input$companyApp))$revenueId
+      (revenueModels %>% filter(id == revenueId) %>% head(1))$description
+  })
+  output$companyAppCurrentRevenueModel <- renderText({
+      companyAppCurrentRevenueModel()
+  })
+  output$companyAppRevenueModelComparator <- renderText({
+    if (companyAppCurrentRevenueModel() == companyAppOptimalRevenueModel()) {
+        c(
+            '<i class="fas fa-check"></i>'
+        )
+    } else {
+        c(
+            '<i class="fas fa-times"></i>'
+        )
+    }
   })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
@@ -77,6 +126,10 @@ shinyServer(function(input, output) {
   outputOptions(output, "companyAppIcon", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppCurrentPrice", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppCategoryBestPrice", suspendWhenHidden=FALSE)
-
+  outputOptions(output, "companyAppPriceComparator", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppOptimalRevenueModel", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppCurrentRevenueModel", suspendWhenHidden=FALSE)
+  outputOptions(output, "companyAppRevenueModelComparator", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryOptimalRevenueModel", suspendWhenHidden=FALSE)
 
 })

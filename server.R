@@ -128,6 +128,10 @@ shinyServer(function(input, output) {
       appList <- getCompanyAppsForCategory(input$Category, secondary = T)
       generateApplicationGrid(appList = appList)
   })
+  
+  output$businessReport <- renderText({
+    businessReport(input$companyApp)
+  })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)

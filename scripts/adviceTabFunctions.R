@@ -33,16 +33,23 @@ getAppPrice <- function(whichApp) {
 ## get advice for app price
 priceAdviceFunction <- function(whichApp) {
   getAppPrice(whichApp) -> priceAppSearched
-  getCompanyAppByName(whichApp) %>% select(primaryGenreId) %>% 
-    as.numeric() %>% getCategoryBestPriceById() -> optimalPrice
+  getOptimalPriceByName(whichApp) -> optimalPrice
   
   if (priceAppSearched < optimalPrice)
-  {advice <- priceAdviceTable %>% filter(adviceId == 1) %>% select(adviceDescription)
+  {advice <- priceAdviceTable %>% filter(adviceId == 1) %>% select(adviceDescription) %>% as.character()
+  advice <- paste0(advice, " The recommended price is ", optimalPrice, "$. ")
   } else if (priceAppSearched > optimalPrice)
-  {advice <- priceAdviceTable %>% filter(adviceId == 2) %>% select(adviceDescription)
+  {advice <- priceAdviceTable %>% filter(adviceId == 2) %>% select(adviceDescription) %>% as.character()
+  advice <- paste0(advice, " The recommended price is ", optimalPrice, "$. ")
   } else {advice <- priceAdviceTable %>% filter(adviceId == 3) %>% select(adviceDescription) }
   advice <- advice %>% as.character()
   return(advice)
+}
+
+getOptimalPriceByName <- function(whichApp) {
+  getCompanyAppByName(whichApp) %>% select(primaryGenreId) %>% 
+    as.numeric() %>% getCategoryBestPriceById() -> optimalPrice
+  return(optimalPrice)
 }
 
 getCategoryOptimalRevenueModel <- function(whichApp) {
@@ -52,6 +59,13 @@ getCategoryOptimalRevenueModel <- function(whichApp) {
   return(modelId)
 }
 
+getCategoryOptimalRevenueModelName <- function(whichApp) {
+  appCategoryId <- (getCompanyAppByName(whichApp))$primaryGenreId
+  appCategoryName <- getCategoryNameById(appCategoryId)
+  (revenueModels %>% filter(id == getSortedRevenueIdsForCategory(appCategoryName) %>% head(1)) %>% head(1))$description -> model
+  return(model)
+}
+
 ## get advice for revenue model of app
 modelAdviceFunction <- function(whichApp) {
   getCompanyAppByName(whichApp) %>% select(revenueId) %>% as.numeric() -> appRevenueId
@@ -59,7 +73,9 @@ modelAdviceFunction <- function(whichApp) {
   
   if (appRevenueId == optimalModel) 
     {advice <- modelAdviceTable %>% filter(adviceId == 1) %>% select(adviceDescription)
-  } else {advice <- modelAdviceTable %>% filter(adviceId == 2) %>% select(adviceDescription)}
+  } else {advice <- modelAdviceTable %>% filter(adviceId == 2) %>% select(adviceDescription) %>% as.character()
+  advice <- paste0(advice, getCategoryOptimalRevenueModelName(whichApp), ".")
+  }
   advice <- advice %>% as.character()
   return(advice)
 }
@@ -95,20 +111,20 @@ tweetsAdviceFunction <- function(whichApp) {
 
 ratingAdviceTable <- data.frame(adviceId = numeric(3), adviceDescription = character(3), stringsAsFactors = FALSE)
 ratingAdviceTable$adviceId <- c(1, 2, 3)
-ratingAdviceTable$adviceDescription <- c("which is better than the average.", 
-                                         "which is worse than average.", 
-                                         "which is an average rating.")
+ratingAdviceTable$adviceDescription <- c("which is better than the average for apps in this category.", 
+                                         "which is worse than average for apps in this category.", 
+                                         "which is an average rating for apps in this category.")
 
 priceAdviceTable <- data.frame(adviceId = numeric(3), adviceDescription = character(3), stringsAsFactors = FALSE)
 priceAdviceTable$adviceId <- c(1, 2, 3)
-priceAdviceTable$adviceDescription <- c("This is too low, you should consider charging a higher price",
-                                        "This is too high, you should consider charging a lower price", 
-                                        "This is the optimal price")
+priceAdviceTable$adviceDescription <- c("This is too low, you should consider charging a higher price.",
+                                        "This is too high, you should consider charging a lower price.", 
+                                        "This is the optimal price.")
 
 modelAdviceTable <- data.frame(adviceId = numeric(2), adviceDescription = character(2), stringsAsFactors = FALSE)
 modelAdviceTable$adviceId <- c(1, 2)
 modelAdviceTable$adviceDescription <- c("Your app uses the best revenuemodel for its category.",
-                                        "Your app uses the wrong model, it's recomended to change your revenuemodel.")
+                                        "Your app uses the wrong model, it's recomended to change your revenuemodel to ")
 
 tweetsAdviceTable <- data.frame(adviceId = numeric(3), adviceDescription = character(3), stringsAsFactors = FALSE)
 tweetsAdviceTable$adviceId <- c(1, 2, 3)
@@ -139,9 +155,8 @@ paste0(companyApp, " belongs to the category ", getCategoryAppByName(companyApp)
        "\n",  tweetsAdviceFunction(companyApp), '\n', "Your app belongs to the ", rankingAdviceFunction(companyApp),
        ", namely at rank ", getAppRank(companyApp), ". ", '\n', "The revenue that's generated by your app depends on the revenue model. ",
        modelAdviceFunction(companyApp), " Besides the revenue model, your price is important as well. ",
-       "The price of your app is ", getAppPrice(companyApp), "$. ", priceAdviceFunction(companyApp), ".") -> body
+       "The price of your app is ", getAppPrice(companyApp), "$. ", priceAdviceFunction(companyApp)) -> body
 
-report <- cat( paste0(title, '\n\n', body))
+report <- cat(title, body, sep = '\n\n')
 
-return(report)
 }

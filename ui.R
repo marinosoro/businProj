@@ -42,6 +42,8 @@ htmlTemplate("template.html",
     categoryApplicationGridSecondary = htmlOutput("categoryApplicationGridSecondary"),
 
     ratingApp = textOutput("ratingApp"),
-    ratingAppAdvice = textOutput("ratingAppAdvice")
+    ratingAppAdvice = textOutput("ratingAppAdvice"),
+    
+    businessReport = textOutput("businessReport")
 
 )

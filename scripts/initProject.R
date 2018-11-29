@@ -23,9 +23,12 @@ library(ROAuth)
 library(RColorBrewer)
 library(wordcloud)
 library(scales)
-
+library(DT)
 
 source("scripts/databaseHelper.R")
+if (!exists("databaseLoaded") || !databaseLoaded) {
+  source(file = "scripts/load_online_database.R", local = TRUE)
+}
 source("scripts/helperFunctions.R")
 source("scripts/generateApplicationGrid.R")
 source("scripts/revenueModelPieCharts.R")

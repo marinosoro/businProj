@@ -6,15 +6,10 @@
 #
 #    http://shiny.rstudio.com/
 
+source("scripts/initProject.R", local = TRUE)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-
-  source("./scripts/initProject.R", local = TRUE)
-
-  if (!exists("databaseLoaded") || !databaseLoaded) {
-    source(file = "./scripts/load_online_database.R", local = TRUE)
-  }
 
   output$rankingPerRevenueModelPlot <- renderPlotly({
     ratingPerRevenueModel(input$Category)
@@ -128,6 +123,30 @@ shinyServer(function(input, output) {
       appList <- getCompanyAppsForCategory(input$Category, secondary = T)
       generateApplicationGrid(appList = appList)
   })
+  output$categoryRankingTable <- DT::renderDataTable({
+      categoryNameSlug <- str_replace(input$Category, pattern = ' ', replacement = '_')
+      categoryNameSlug <- str_replace(categoryNameSlug, pattern = '& ', replacement = '')
+      categoryDFName <- paste0("appleCategory_", categoryNameSlug)
+      categoryDF <- get(categoryDFName, envir = .GlobalEnv)
+      categoryDF %>% select(trackCensoredName) %>% datatable(colnames = c('Rank' = 1),
+                                                             selection = "single",
+                                                             options = list(ordering = F))
+  })
+  tweets <- reactive({
+      getTweets(input$companyApp)
+  })
+  twitterGauge <- reactive({
+      getGaugeChart(tweets())
+  })
+  output$twitterGaugeChart <- renderPlot({
+      twitterGauge()
+  })
+  twitterWordCloud <- reactive({
+      getWordcloud(tweets(), minFreq = 2, maxWords = 25)
+  })
+  output$twitterWordCloud <- renderPlot({
+      twitterWordCloud()
+  })
 
   outputOptions(output, "revenueModelComparisonPlots", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryBestPrice1", suspendWhenHidden=FALSE)
@@ -145,5 +164,8 @@ shinyServer(function(input, output) {
   outputOptions(output, "categoryApplicationGrid", suspendWhenHidden=FALSE)
   outputOptions(output, "categoryApplicationGridSecondary", suspendWhenHidden=FALSE)
   outputOptions(output, "companyAppCategory", suspendWhenHidden=FALSE)
+  outputOptions(output, "categoryRankingTable", suspendWhenHidden=FALSE)
+  outputOptions(output, "twitterGaugeChart", suspendWhenHidden=FALSE)
+  outputOptions(output, "twitterWordCloud", suspendWhenHidden=FALSE)
 
 })

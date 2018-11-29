@@ -1,0 +1,10 @@
+name: project
+title:
+username:
+account: businprojdashboard
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 593156
+bundleId: 1725495
+url: https://businprojdashboard.shinyapps.io/project/
+when: 1543394483.33917

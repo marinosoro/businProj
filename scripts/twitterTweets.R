@@ -138,6 +138,7 @@ getGaugeChart <- function(){
               Sentimentscores_tweets$Score[9] + Sentimentscores_tweets$Score[10])
 
   Value <- round(((posValue/total)*100), digits = 2)
+  assign("tweetPercentageSentiment", Value, envir = .GlobalEnv)
   gaugeChart(Value,breaks=c(0,30,70,100))
 }
 

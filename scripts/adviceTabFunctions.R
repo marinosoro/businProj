@@ -157,6 +157,6 @@ paste0(companyApp, " belongs to the category ", getCategoryAppByName(companyApp)
        modelAdviceFunction(companyApp), " Besides the revenue model, your price is important as well. ",
        "The price of your app is ", getAppPrice(companyApp), "$. ", priceAdviceFunction(companyApp)) -> body
 
-report <- cat(title, body, sep = '\n\n')
-
+report <- paste0(title, body, sep = '\n\n')
+return(report)
 }

@@ -42,6 +42,7 @@ revenueModelComparisonPlots <- function(categoryName) {
   plot_ly() %>%
     add_pie(
       data = data,
+      hole = 0.5,
       labels = ~revenueModel,
       values = ~count,
       name = 'Distribution',
@@ -54,6 +55,7 @@ revenueModelComparisonPlots <- function(categoryName) {
 
     add_pie(
       data = data,
+      hole = 0.5,
       labels = ~revenueModel,
       values = ~index,
       name = 'Popularity',

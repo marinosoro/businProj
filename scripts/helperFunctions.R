@@ -177,3 +177,18 @@ getCategoryNameById <- function(catId) {
   result <- appleCategories %>% filter(id == catId) %>% head(1)
   return(result$name)
 }
+getCategoryIdByName <- function(catName) {
+  result <- appleCategories %>% filter(name == catName) %>% head(1)
+  return(result$id)
+}
+
+getCompanyAppsForCategory <- function(catName, secondary) {
+    companyApps <- getCompanyApps()
+    categoryId <- getCategoryIdByName(catName)
+    if (missing(secondary) || secondary == F) {
+        result <- filter(companyApps, primaryGenreId == categoryId)
+    } else {
+        result <- filter(companyApps, grepl(categoryId, genreIds) & primaryGenreId != categoryId)
+    }
+    return(result)
+}

@@ -6,6 +6,7 @@ appleAppCategories <- getDatabaseTable("appleAppCategories")
 appleRanking <- getDatabaseTable("appleRanking")
 appleCategories <- getDatabaseTable("appleCategories")
 
+
 appleCategory_Book <- getDatabaseTable("appleCategory_Book")
 appleCategory_Business <- getDatabaseTable("appleCategory_Business")
 appleCategory_Catalogs <- getDatabaseTable("appleCategory_Catalogs")

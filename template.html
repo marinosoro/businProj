@@ -86,8 +86,7 @@
                                                     Optimal Non-Zero Price
                                                     <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right"
                                                     title="
-                                                    Info about Optimal Non-Zero Price ->
-                                                    Hanne & Mathias ;)
+                                                    Optimal price in case you choose to offer a paid app. The Optimal Non-Zero Price is calculated based on a weighted average of the prices of the most optimal non-free revenue model.
                                                     ">
                                                     </i>
                                                 </p>
@@ -105,20 +104,32 @@
                                 </div>
                                 <!-- Company Apps Within Category -->
                                 <div class="divider"></div>
-                                <h1>Company Apps Within Category</h1>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="infoBoxTitle">Company apps - Primary category</p>
+                                        {{categoryApplicationGrid}}
+                                    </div>
+                                    <div class="col">
+                                        <p class="infoBoxTitle">Category apps - Secondary category</p>
+                                        {{categoryApplicationGridSecondary}}
+                                    </div>
+                                </div>
 
                             </div>
 
                             <div class="section_content hidden" id="content_company">
-                                <div class="row">
-                                    <div class="col">
+                                <div class="row" id="companyAppSelectionRow">
+                                    {{companyAppIcon}}
+                                    <div class="col-5">
                                         <p class="infoBoxTitle">Choose Company App</p>
                                         {{companyDropdown}}
                                     </div>
-                                    <div class="col-1"></div>
-                                    <div class="col" style="position: relative;">
-                                        {{companyAppIcon}}
+                                    <div class="w-100"></div>
+                                    <div class="col">
+                                        <p class="infoBoxTitle">App Category</p>
+                                        <div class="infoBox">{{companyAppCategory}}</div>
                                     </div>
+                                    <div class="col-1"></div><div class="col"></div>
                                 </div>
                                 <!-- RevenueModel Row -->
                                 <div class="row">
@@ -137,8 +148,7 @@
                                             Optimal Revenue Model
                                             <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right"
                                             title="
-                                            Info about Optimal Revenue Model ->
-                                            Hanne & Mathias ;)
+                                            Optimal revenue model for an app in the category of your selected app. The Optimal Revenue Model is calculated by assigning higher weights to the revenue models of the apps with the highest rankings and ratings within their category.
                                             ">
                                             </i>
                                         </p>
@@ -162,8 +172,7 @@
                                             Optimal Price
                                             <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right"
                                             title="
-                                            Info about Optimal Price ->
-                                            Hanne & Mathias ;)
+                                            Optimal price for an app in the category of your selected app. The Optimal Price is calculated according to the prices of the apps whose revenue model is the same as the Optimal Revenue Model.
                                             ">
                                             </i>
                                         </p>

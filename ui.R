@@ -30,6 +30,7 @@ htmlTemplate("template.html",
     categoryNonZeroPrice = textOutput("categoryNonZeroPrice"),
     companyAppCurrentPrice = textOutput("companyAppCurrentPrice"),
     companyAppId = textOutput("companyAppId"),
+    companyAppCategory = textOutput("companyAppCategory"),
     companyAppIcon = htmlOutput("companyAppIcon"),
     companyAppPriceComparator = htmlOutput("companyAppPriceComparator"),
     companyAppCategoryBestPrice = textOutput("companyAppCategoryBestPrice"),
@@ -37,7 +38,8 @@ htmlTemplate("template.html",
     companyAppCurrentRevenueModel = textOutput("companyAppCurrentRevenueModel"),
     companyAppRevenueModelComparator = htmlOutput("companyAppRevenueModelComparator"),
     categoryOptimalRevenueModel = textOutput("categoryOptimalRevenueModel"),
-
+    categoryApplicationGrid = htmlOutput("categoryApplicationGrid"),
+    categoryApplicationGridSecondary = htmlOutput("categoryApplicationGridSecondary"),
 
     ratingApp = textOutput("ratingApp"),
     ratingAppAdvice = textOutput("ratingAppAdvice")

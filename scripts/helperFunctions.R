@@ -91,31 +91,13 @@ getAppIcon <- function(id) {
 }
 
 getSortedRevenueIdsForCategory <- function(categoryName) {
-  categoryNameSlug <- str_replace(categoryName, pattern = ' ', replacement = '_')
-  categoryNameSlug <- str_replace(categoryNameSlug, pattern = '& ', replacement = '')
+  categoryIndexes <- get("categoryIndexes", env = .GlobalEnv)
+  categoryIndex <- categoryIndexes %>% filter(name == categoryName)
 
-  categoryDFName <- paste0("appleCategory_", categoryNameSlug)
-  categoryDF <- get(categoryDFName, envir = .GlobalEnv)
-  model1Index <- model2Index <- model3Index <- model4Index <- 0
-  count1 <- count2 <- count3 <- count4 <- 0
-  allApps <- split(categoryDF, seq_len(nrow(categoryDF)))
-  # Bereken index voor ieder revenueModel:"
-  for (rank in 1:nrow(categoryDF)) {
-    app <- allApps[[rank]]
-    if (is.na(app$revenueId)) next
-    inverseRank <- nrow(categoryDF) - rank + 1
-    currentIndex <- get(paste0("model", app$revenueId, "Index"))
-    newIndex <- currentIndex + (inverseRank * app$averageUserRating)
-    assign(x = paste0("model", app$revenueId, "Index"), value = newIndex)
-    currentCount <- get(paste0("count", app$revenueId))
-    newCount <- currentCount + 1
-    assign(x = paste0("count", app$revenueId), value = newCount)
-  }
-  # Normaliseren
-  model1Index <- model1Index / count1
-  model2Index <- model2Index / count2
-  model3Index <- model3Index / count3
-  model4Index <- model4Index / count4
+  model1Index = categoryIndex$index1
+  model2Index = categoryIndex$index2
+  model3Index = categoryIndex$index3
+  model4Index = categoryIndex$index4
 
   indexes <- c("1" = model1Index, "2" = model2Index, "3" = model3Index, "4" = model4Index)
   sortedIndexes <- sort(indexes, T)
@@ -160,12 +142,11 @@ getCategoryBestPrice <- function(categoryName, nonZero) {
     filteredCategoryDF <- filter(categoryDF, revenueId == Id)
     som <- 0
     som2 <- 0
-    allApps <- split(filteredCategoryDF, seq_len(nrow(filteredCategoryDF)))
-
+    appPrices <- filteredCategoryDF$price
     for (rank in 1:nrow(filteredCategoryDF)) {
-      app <- allApps[[rank]]
+      price <- appPrices[rank]
       inverseRank <- nrow(filteredCategoryDF) - rank + 1
-      som <- som + (inverseRank*app$price)
+      som <- som + (inverseRank*price)
       som2 <- som2 + inverseRank
     }
     result <- som / som2

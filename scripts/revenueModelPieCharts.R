@@ -12,6 +12,8 @@ revenueModelComparisonPlots <- function(categoryName) {
   model3Percentage <- model3Index / sum(model1Index, model2Index, model3Index, model4Index)
   model4Percentage <- model4Index / sum(model1Index, model2Index, model3Index, model4Index)
 
+  indexes <- c(model1Index, model2Index, model3Index, model4Index)
+
   count1 <- categoryIndex$count1
   count2 <- categoryIndex$count2
   count3 <- categoryIndex$count3

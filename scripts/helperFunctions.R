@@ -158,6 +158,8 @@ getCategoryBestPrice <- function(categoryName, nonZero) {
     categoryDFName <- paste0("appleCategory_", categoryNameSlug)
     categoryDF <- get(categoryDFName, envir = .GlobalEnv)
     filteredCategoryDF <- filter(categoryDF, revenueId == Id)
+    filteredCategoryDF <- filter(categoryDF, !grepl("JPY|VND|KRW|RUB|KZT|DKK|SEK|TWD|CHF|NOK|BRL|INR|CNY|HKD|EUR|Â",formattedPrice))
+    filteredCategoryDF <- filter(categoryDF, categoryDF$price < 1000)
     som <- 0
     som2 <- 0
     allApps <- split(filteredCategoryDF, seq_len(nrow(filteredCategoryDF)))

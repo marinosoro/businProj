@@ -1,0 +1,2 @@
+test_allCategoryData <- filter(allCategoryData, !grepl("JPY|VND|KRW|RUB|KZT|DKK|SEK|TWD|CHF|NOK|BRL|INR|CNY|HKD|EUR|Â",formattedPrice))
+test_allCategoryData <- filter(test_allCategoryData, test_allCategoryData$price < 1000)

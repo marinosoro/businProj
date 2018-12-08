@@ -18,17 +18,18 @@ getTweets <- function(appName){
   y <- paste(x, "'", sep="")
 
   # Change the next four lines based on your own consumer_key, consume_secret, access_token, and access_secret.
-  consumer_key <- "WCC8jBuEIcUpRC734ROvG7l1t"
-  consumer_secret <- "yj9vHCIEMnw4mMAiRRjS8calnjgLgNzx4sRs4acdnl0nm4X6WX"
-  access_token <- "1060085268504604672-K3B05SUfDduX7OIsR8UjUIGOO7UUyc"
-  access_secret <- "vhhGG7k7xpOLM5d9R3tLkkOpibKPLoGiiJ45UBki8U68l"
+  consumer_key <- Sys.getenv("twitter_consumer_key")
+  consumer_secret <- Sys.getenv("twitter_consumer_secret")
+  access_token <- Sys.getenv("twitter_access_token")
+  access_secret <- Sys.getenv("twitter_access_secret")
 
   setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 
   ## get tweets about appName
   tweets <- searchTwitter(y, n = 1000, lang = 'en')
   dataFrame_tweets <- twListToDF(tweets)
-  assign("dataFrame_tweets", dataFrame_tweets, envir = .GlobalEnv)
+  dataFrame_tweets$appId <- companyApps$id[9]
+  assign("dataFrame_tweets_9", dataFrame_tweets, envir = .GlobalEnv)
 }
 
 ## function for getting wordcloud for appName

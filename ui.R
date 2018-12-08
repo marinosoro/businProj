@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+source("scripts/initProject.R", local = TRUE)
 
 # Define UI for application that draws a histogram
 htmlTemplate("template.html",
@@ -40,6 +41,9 @@ htmlTemplate("template.html",
     categoryOptimalRevenueModel = textOutput("categoryOptimalRevenueModel"),
     categoryApplicationGrid = htmlOutput("categoryApplicationGrid"),
     categoryApplicationGridSecondary = htmlOutput("categoryApplicationGridSecondary"),
+    categoryRankingTable = DT::dataTableOutput("categoryRankingTable"),
+    twitterGaugeChart = plotOutput("twitterGaugeChart"),
+    twitterWordCloud = plotOutput("twitterWordCloud"),
 
     ratingApp = textOutput("ratingApp"),
     ratingAppAdvice = textOutput("ratingAppAdvice")

@@ -106,12 +106,14 @@
                                 <div class="divider"></div>
                                 <div class="row">
                                     <div class="col">
-                                        <p class="infoBoxTitle">Company apps - Primary category</p>
+                                        <p class="infoBoxTitle center">Company apps - Primary category</p>
                                         {{categoryApplicationGrid}}
-                                    </div>
-                                    <div class="col">
-                                        <p class="infoBoxTitle">Category apps - Secondary category</p>
+                                        <p class="infoBoxTitle center">Company apps - Secondary category</p>
                                         {{categoryApplicationGridSecondary}}
+                                    </div>
+                                    <div class="col" id="rankingTableCol">
+                                        <p class="infoBoxTitle center">Category Ranking Table</p>
+                                        {{categoryRankingTable}}
                                     </div>
                                 </div>
 
@@ -177,6 +179,15 @@
                                             </i>
                                         </p>
                                         <div class="infoBox">{{companyAppCategoryBestPrice}}</div>
+                                    </div>
+                                </div>
+
+                                <div class="row twitterRow">
+                                    <div class="col">
+                                        {{twitterGaugeChart}}
+                                    </div>
+                                    <div class="col">
+                                        {{twitterWordCloud}}
                                     </div>
                                 </div>
                             </div>

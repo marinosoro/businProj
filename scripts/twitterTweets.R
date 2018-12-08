@@ -14,6 +14,7 @@ library("tm")
 
 ## function for getting tweets of appName
 getTweets <- function(appName){
+    appName <- str_replace_all(appName, " ", "")
   x <- paste("'#", appName, sep="")
   y <- paste(x, "'", sep="")
 
@@ -26,17 +27,17 @@ getTweets <- function(appName){
   setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 
   ## get tweets about appName
-  tweets <- searchTwitter(y, n = 1000, lang = 'en')
+  tweets <- searchTwitter(y, n = 100, lang = 'en')
   dataFrame_tweets <- twListToDF(tweets)
-  dataFrame_tweets$appId <- companyApps$id[9]
-  assign("dataFrame_tweets_9", dataFrame_tweets, envir = .GlobalEnv)
+  # assign("dataFrame_tweets", dataFrame_tweets, envir = .GlobalEnv)
+  return(dataFrame_tweets)
 }
 
 ## function for getting wordcloud for appName
-getWordcloud <- function(minFreq, maxWords){
+getWordcloud <- function(df, minFreq, maxWords){
   ## getting wordcloud out of the tweets
   ### select text of tweets
-  tweets_text<- dataFrame_tweets$text
+  tweets_text<- df$text
   ### Replace blank space (“RT”)
   tweets_text <- gsub("RT", "", tweets_text)
   ### extra
@@ -98,9 +99,9 @@ gaugeChart <- function(pos,breaks=c(0,30,70,100)) {
 
 
 ## get gaugechart for appName
-getGaugeChart <- function(){
+getGaugeChart <- function(df){
   ### select text of tweets
-  tweets_text<- dataFrame_tweets$text
+  tweets_text<- df$text
   ### Replace blank space (“RT”)
   tweets_text <- gsub("RT", "", tweets_text)
   ### ??? deze werkte niet dus laat ik voorlopig weg XD
@@ -139,6 +140,7 @@ getGaugeChart <- function(){
               Sentimentscores_tweets$Score[9] + Sentimentscores_tweets$Score[10])
 
   Value <- round(((posValue/total)*100), digits = 2)
+  assign("tweetPercentageSentiment", Value, envir = .GlobalEnv)
   gaugeChart(Value,breaks=c(0,30,70,100))
 }
 
